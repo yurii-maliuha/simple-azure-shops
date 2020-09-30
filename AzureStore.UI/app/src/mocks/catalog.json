@@ -1,0 +1,26 @@
+[
+    {
+        "id": 105123,
+        "name": "Asus",
+        "price": 50000,
+        "currency": "UAH",
+        "description": "Description",
+        "type": "IT"
+    },
+    {
+        "id": 105124,
+        "name": "Asus Bla2",
+        "price": 50000,
+        "currency": "UAH",
+        "description": "Description",
+        "type": "IT"
+    },
+    {
+        "id": 105126,
+        "name": "Asus Bla Ti",
+        "price": 150000,
+        "currency": "UAH",
+        "description": "Description",
+        "type": "IT"
+    }
+]
