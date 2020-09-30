@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{47BC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Payment", "Payment", "{51972072-A157-4921-88F0-4F523A555F53}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Orders", "Orders", "{F74A0B91-456F-4766-B63C-404D55FDD239}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ordering", "Ordering", "{F74A0B91-456F-4766-B63C-404D55FDD239}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.API", "Catalog.API\Catalog.API.csproj", "{B05D6169-F38C-494A-8F85-1A34F28E4C01}"
 EndProject
@@ -27,13 +27,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.Infrastructure", "C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D2FE2A43-E41D-4E22-81B4-F24BB21D89D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders.UnitTests", "Orders\Tests\Orders.UnitTests\Orders.UnitTests.csproj", "{6C12EBCF-A375-43FE-B009-1FE4B2D69781}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ordering.UnitTests", "Ordering\Tests\Ordering.UnitTests\Ordering.UnitTests.csproj", "{6C12EBCF-A375-43FE-B009-1FE4B2D69781}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders.API", "Orders\Orders.API\Orders.API.csproj", "{B919C20A-8788-42DA-9E4C-D4789D76A114}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ordering.API", "Ordering\Ordering.API\Ordering.API.csproj", "{B919C20A-8788-42DA-9E4C-D4789D76A114}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders.Domain", "Orders\Orders.Domain\Orders.Domain.csproj", "{2D739D53-A9AB-484F-8426-7E436116D48B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ordering.Domain", "Ordering\Ordering.Domain\Ordering.Domain.csproj", "{2D739D53-A9AB-484F-8426-7E436116D48B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders.Service", "Orders\Orders.Service\Orders.Service.csproj", "{730D2B71-4734-44BB-9BBE-98E7A5FC6CF3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ordering.Service", "Ordering\Ordering.Service\Ordering.Service.csproj", "{730D2B71-4734-44BB-9BBE-98E7A5FC6CF3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
