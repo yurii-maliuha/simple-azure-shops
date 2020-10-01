@@ -10,8 +10,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Orders.Domain\Ordering.Domain.csproj" />
-    <ProjectReference Include="..\Orders.Service\Ordering.Service.csproj" />
+    <ProjectReference Include="..\Ordering.Service\Ordering.Service.csproj" />
+    <ProjectReference Include="..\Ordering.Domain\Ordering.Domain.csproj" />
+    <ProjectReference Include="..\Ordering.Service\Ordering.Service.csproj" />
   </ItemGroup>
 
 

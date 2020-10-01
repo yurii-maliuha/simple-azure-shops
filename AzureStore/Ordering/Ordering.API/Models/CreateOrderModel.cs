@@ -10,6 +10,6 @@ namespace Orders.API.Models
 		public string UserEmail { get; set; }
 
 		[Required]
-		public List<Guid> ProductsId { get; set; }
+		public List<int> ProductsId { get; set; }
 	}
 }

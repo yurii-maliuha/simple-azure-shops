@@ -9,7 +9,7 @@ namespace Orders.Domain.Models
 		// TODO replace for UserGuid after auth will be implemented
 		public string UserEmail { get; set; }
 
-		public List<Guid> ProductsId { get; set; }
+		public List<int> ProductsId { get; set; }
 
 		public OrderState State { get; set; }
 	}

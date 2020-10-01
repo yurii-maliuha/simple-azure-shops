@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Orders.Domain.Commands;
 using Orders.Service.Handlers;
 
 namespace Orders.API
@@ -21,8 +20,7 @@ namespace Orders.API
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddControllers();
-			services.AddMediatR(typeof(Startup), 
-				typeof(CreateOrderCommand), typeof(CreateOrderHandler));
+			services.AddMediatR(typeof(Startup), typeof(CreateOrderHandler));
 		}
 
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
