@@ -7,7 +7,7 @@ namespace Orders.Domain.Commands
 {
 	public class CreateOrderCommand : IRequest<OrderInfo>
 	{
-		// test2
+		// test3
 		public string UserEmail { get; set; }
 
 		public List<Guid> ProductsId { get; set; }
