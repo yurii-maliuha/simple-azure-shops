@@ -1,9 +1,11 @@
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Ordering.Persistent;
 using Orders.Service.Handlers;
 
 namespace Orders.API
@@ -21,6 +23,11 @@ namespace Orders.API
 		{
 			services.AddControllers();
 			services.AddMediatR(typeof(Startup), typeof(CreateOrderHandler));
+			services.AddDbContext<OrderingContext>(c =>
+			{
+				c.UseSqlServer(
+					"Server=.;Initial Catalog=azurestore.ordering;User Id=azureStoreApi;Password=azure4fun;Integrated Security=true");
+			});
 		}
 
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

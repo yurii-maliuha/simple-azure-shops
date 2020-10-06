@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Ordering.Persistent\Ordering.Persistent.csproj" />
     <ProjectReference Include="..\Ordering.Service\Ordering.Service.csproj" />
     <ProjectReference Include="..\Ordering.Domain\Ordering.Domain.csproj" />
     <ProjectReference Include="..\Ordering.Service\Ordering.Service.csproj" />

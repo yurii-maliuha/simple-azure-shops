@@ -1,9 +1,9 @@
 ﻿using MediatR;
-using Orders.Domain.Models;
+using Ordering.Domain.Models;
 using System;
 using System.Collections.Generic;
 
-namespace Orders.Domain.Commands
+namespace Ordering.Service.Commands
 {
 	public class CreateOrderCommand : IRequest<OrderInfo>
 	{

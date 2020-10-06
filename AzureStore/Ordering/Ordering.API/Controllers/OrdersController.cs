@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Ordering.Service.Commands;
 using Orders.API.Models;
-using Orders.Domain.Commands;
 
 namespace Orders.API.Controllers
 {
