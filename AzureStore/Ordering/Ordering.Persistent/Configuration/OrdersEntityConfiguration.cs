@@ -18,7 +18,8 @@ namespace Ordering.Persistent.Configuration
 			builder.Property(x => x.State)
 				.IsRequired();
 			builder.HasMany(x => x.OrderItems)
-				.WithOne(x => x.OrderInfo);
+				.WithOne(x => x.OrderInfo)
+				.HasForeignKey(x => x.OrderInfoId);
 		}
 	}
 }

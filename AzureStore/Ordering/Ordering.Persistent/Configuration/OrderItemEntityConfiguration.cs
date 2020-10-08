@@ -12,6 +12,8 @@ namespace Ordering.Persistent.Configuration
 			builder.HasKey(x => x.Id);
 			builder.Property(x => x.Quantity)
 				.IsRequired();
+			builder.Property(x => x.ComodityId)
+				.IsRequired();
 		}
 	}
 }

@@ -23,11 +23,17 @@ namespace Orders.API
 		{
 			services.AddControllers();
 			services.AddMediatR(typeof(Startup), typeof(CreateOrderHandler));
+			services.AddControllersWithViews()
+				.AddNewtonsoftJson(options =>
+				options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+			);
 			services.AddDbContext<OrderingContext>(c =>
 			{
 				c.UseSqlServer(
-					"Server=.;Initial Catalog=azurestore.ordering;User Id=azureStoreApi;Password=azure4fun;Integrated Security=true");
+					"Server=.;Initial Catalog=azurestore.ordering;User Id=azureStoreeeApi;Password=azure4fun;Integrated Security=true");
 			});
+
+			services.AddTransient<Ordering.Persistent.Repositories.IOrderRepository, Ordering.Persistent.Repositories.OrderRepository>();
 		}
 
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -9,6 +9,6 @@ namespace Ordering.Domain.Models
 		// TODO replace for UserGuid after auth will be implemented
 		public string UserEmail { get; set; }
 		public OrderState State { get; set; }
-		public IEnumerable<OrderItem> OrderItems { get; set; }
+		public virtual IEnumerable<OrderItem> OrderItems { get; set; }
 	}
 }

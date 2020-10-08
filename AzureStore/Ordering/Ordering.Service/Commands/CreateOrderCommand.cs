@@ -9,6 +9,6 @@ namespace Ordering.Service.Commands
 	{
 		public string UserEmail { get; set; }
 
-		public List<int> ProductsId { get; set; }
+		public List<OrderItem> OrderItems { get; set; }
 	}
 }

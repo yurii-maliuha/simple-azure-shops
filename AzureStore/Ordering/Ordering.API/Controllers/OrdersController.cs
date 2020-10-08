@@ -28,7 +28,7 @@ namespace Orders.API.Controllers
 			var order = await _mediator.Send(new CreateOrderCommand()
 			{
 				UserEmail = createOrderModel.UserEmail,
-				ProductsId = createOrderModel.ProductsId
+				OrderItems = createOrderModel.OrderItems
 			});
 
 			return Ok(order);

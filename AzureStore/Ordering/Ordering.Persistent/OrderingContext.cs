@@ -21,5 +21,6 @@ namespace Ordering.Persistent
 			base.OnModelCreating(modelBuilder);
 		}
 		public DbSet<OrderInfo> Orders { get; set; }
+		public DbSet<OrderItem> OrderItems { get; set; }
 	}
 }
