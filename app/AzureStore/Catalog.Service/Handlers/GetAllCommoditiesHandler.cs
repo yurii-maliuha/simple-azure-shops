@@ -35,7 +35,7 @@ namespace Catalog.Service.Handlers
                 SalePrice = x.SalePrice,
                 OnSale = x.OnSale,
                 Description = x.Description
-            }).ToListAsync(cancellationToken: cancellationToken);
+            }).ToListAsync(cancellationToken);
         }
     }
 }

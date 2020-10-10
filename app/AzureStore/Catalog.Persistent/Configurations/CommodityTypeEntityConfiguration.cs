@@ -17,7 +17,8 @@ namespace Catalog.Persistence.Configurations
             builder.Property(x => x.Name)
                 .IsRequired();
             builder.HasMany(x => x.Commodities)
-                .WithOne(x => x.Type);
+                .WithOne(x => x.Type)
+                .HasForeignKey(x => x.CommodityTypeId);
         }
     }
 }

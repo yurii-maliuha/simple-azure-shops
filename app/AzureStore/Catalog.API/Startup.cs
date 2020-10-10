@@ -1,11 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using AutoMapper;
 using Catalog.Persistence;
+using Catalog.Persistence.Repositories;
+using Catalog.Service.Handlers;
+using Catalog.Service.Mappers;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -41,12 +41,15 @@ namespace Catalog.API
 
             services.AddDbContext<ApplicationDbContext>(c =>
             {
-                c.UseSqlServer(
-                    "Server=(localdb)\\mssqllocaldb;Database=Catalog;Trusted_Connection=True;MultipleActiveResultSets=true");
+                var connectionString = _configuration.GetConnectionString(_hostingEnvironment.EnvironmentName);
+                c.UseSqlServer(connectionString);
             });
 
+            services.AddTransient<ICatalogRepository, CatalogRepository>();
 
-            services.AddMvc();
+            services.AddControllers();
+            services.AddMediatR(typeof(GetAllCommoditiesHandler));
+            services.AddAutoMapper(typeof(CommodityMapper));
             services.AddSwaggerGen(c =>
             {
                 c.DescribeAllParametersInCamelCase();
@@ -61,11 +64,10 @@ namespace Catalog.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-
             }
 
             app.UseRouting();
-
+            app.UseEndpoints(x => x.MapControllers());
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {

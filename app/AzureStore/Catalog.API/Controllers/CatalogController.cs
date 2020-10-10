@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Catalog.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/catalog")]
     [ApiController]
     public class CatalogController : ControllerBase
     {
@@ -28,5 +28,14 @@ namespace Catalog.API.Controllers
             var result = await _mediator.Send(new GetAllCommoditiesCommand());
             return Ok(result);
         }
+
+        [HttpGet("{categoryId:int}")]
+        [ProducesResponseType(typeof(IEnumerable<CommodityModel>), 200)]
+        public async Task<IActionResult> GetCommoditiesByCategory([FromRoute] int categoryId)
+        {
+            var result = await _mediator.Send(new GetCommoditiesByCategoryCommand(categoryId));
+            return Ok(result);
+        }
+
     }
 }

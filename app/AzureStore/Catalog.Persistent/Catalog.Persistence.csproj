@@ -5,10 +5,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20201003161238_initial.cs" />
+    <Compile Remove="Migrations\20201003161238_initial.Designer.cs" />
+    <Compile Remove="Migrations\20201010170714_Initial.cs" />
+    <Compile Remove="Migrations\20201010170714_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20201010170816_Initial.cs" />
+    <Compile Remove="Migrations\20201010170816_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20201010172829_Initial.cs" />
+    <Compile Remove="Migrations\20201010172829_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20201010173100_Initial.cs" />
+    <Compile Remove="Migrations\20201010173100_Initial.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Catalog.Core\Catalog.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Bogus" Version="31.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.8" />

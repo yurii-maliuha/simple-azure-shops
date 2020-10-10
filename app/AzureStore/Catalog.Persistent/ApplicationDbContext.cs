@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Catalog.Domain;
+using Catalog.Persistence.Seed;
 using Microsoft.EntityFrameworkCore;
 
 namespace Catalog.Persistence
@@ -20,6 +21,7 @@ namespace Catalog.Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+            modelBuilder.Seed();
             base.OnModelCreating(modelBuilder);
         }
 
