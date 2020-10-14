@@ -1,9 +1,8 @@
 ﻿using MediatR;
-using Orders.Domain.Commands;
-using Orders.Domain.Models;
+using Ordering.Domain.Models;
+using Ordering.Persistent.Repositories;
+using Ordering.Service.Commands;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -11,17 +10,22 @@ namespace Orders.Service.Handlers
 {
 	public class CreateOrderHandler : IRequestHandler<CreateOrderCommand, OrderInfo>
 	{
+		private readonly IOrderRepository _orderRepository;
+
+		public CreateOrderHandler(IOrderRepository orderRepository)
+		{
+			_orderRepository = orderRepository;
+		}
 		public Task<OrderInfo> Handle(CreateOrderCommand command, CancellationToken cancellationToken)
 		{
-			//store order to DB
 			var newOrder = new OrderInfo() {
 				Id = Guid.NewGuid(),
-				ProductsId = command.ProductsId,
+				OrderItems = command.OrderItems,
 				UserEmail = command.UserEmail,
 				State = OrderState.Pending
 			};
 
-			return Task.FromResult(newOrder);
+			return _orderRepository.CreateOrder(newOrder);
 		}
 	}
 }

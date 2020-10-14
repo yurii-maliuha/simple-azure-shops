@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ordering.Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -10,6 +11,6 @@ namespace Orders.API.Models
 		public string UserEmail { get; set; }
 
 		[Required]
-		public List<Guid> ProductsId { get; set; }
+		public List<OrderItem> OrderItems { get; set; }
 	}
 }

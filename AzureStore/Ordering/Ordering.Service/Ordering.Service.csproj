@@ -9,7 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Orders.Domain\Ordering.Domain.csproj" />
+    <ProjectReference Include="..\Ordering.Domain\Ordering.Domain.csproj" />
+    <ProjectReference Include="..\Ordering.Persistent\Ordering.Persistent.csproj" />
   </ItemGroup>
 
 </Project>

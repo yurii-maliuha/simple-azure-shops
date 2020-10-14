@@ -7,11 +7,18 @@
   <ItemGroup>
     <PackageReference Include="MediatR" Version="8.1.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Orders.Domain\Ordering.Domain.csproj" />
-    <ProjectReference Include="..\Orders.Service\Ordering.Service.csproj" />
+    <ProjectReference Include="..\Ordering.Persistent\Ordering.Persistent.csproj" />
+    <ProjectReference Include="..\Ordering.Service\Ordering.Service.csproj" />
+    <ProjectReference Include="..\Ordering.Domain\Ordering.Domain.csproj" />
+    <ProjectReference Include="..\Ordering.Service\Ordering.Service.csproj" />
   </ItemGroup>
 
 

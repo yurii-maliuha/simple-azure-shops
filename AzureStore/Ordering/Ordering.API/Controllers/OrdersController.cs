@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Ordering.Service.Commands;
 using Orders.API.Models;
-using Orders.Domain.Commands;
 
 namespace Orders.API.Controllers
 {
@@ -28,7 +28,7 @@ namespace Orders.API.Controllers
 			var order = await _mediator.Send(new CreateOrderCommand()
 			{
 				UserEmail = createOrderModel.UserEmail,
-				ProductsId = createOrderModel.ProductsId
+				OrderItems = createOrderModel.OrderItems
 			});
 
 			return Ok(order);
