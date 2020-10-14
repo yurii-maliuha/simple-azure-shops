@@ -17,9 +17,6 @@ namespace Ordering.Persistent.Configuration
 				.IsRequired();
 			builder.Property(x => x.State)
 				.IsRequired();
-			builder.HasMany(x => x.OrderItems)
-				.WithOne(x => x.OrderInfo)
-				.HasForeignKey(x => x.OrderInfoId);
 		}
 	}
 }

@@ -12,8 +12,5 @@ namespace Ordering.Domain.Models
 
 		public int Quantity { get; set; }
 
-		public Guid OrderInfoId { get; set; }
-
-		public virtual OrderInfo OrderInfo { get; set; }
 	}
 }

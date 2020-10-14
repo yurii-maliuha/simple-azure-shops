@@ -21,16 +21,14 @@ namespace Orders.API
 
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddControllers();
-			services.AddMediatR(typeof(Startup), typeof(CreateOrderHandler));
-			services.AddControllersWithViews()
+			services.AddControllers()
 				.AddNewtonsoftJson(options =>
 				options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
 			);
+			services.AddMediatR(typeof(Startup), typeof(CreateOrderHandler));
 			services.AddDbContext<OrderingContext>(c =>
 			{
-				c.UseSqlServer(
-					"Server=.;Initial Catalog=azurestore.ordering;User Id=azureStoreeeApi;Password=azure4fun;Integrated Security=true");
+				c.UseSqlServer(Configuration["ConnectionString"]);
 			});
 
 			services.AddTransient<Ordering.Persistent.Repositories.IOrderRepository, Ordering.Persistent.Repositories.OrderRepository>();
