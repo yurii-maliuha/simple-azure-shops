@@ -1,6 +1,6 @@
 import React from 'react';
-import { Container, Button, Grid, Card, CardMedia, CardActionArea, CardActions, CardContent, Typography } from '@material-ui/core';
-import InfoIcon from '@material-ui/icons/Info';
+import { Container, Grid } from '@material-ui/core';
+import CatalogItem from '../Shared/CatalogItem';
 
 interface Props {
     getCatalog: () => void;
@@ -20,24 +20,7 @@ export default class Catalog extends React.Component<Props> {
     render() {
         const data = this.props.catalogItems.map(item => {
             return <Grid item sm={6} md={4} lg={3}>
-                <Card style={{ height: '100%' }}>
-                    <CardActionArea>
-                        <CardMedia
-                            component="img"
-                            image={item.imageUrl}
-                        />
-                        <CardContent>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                                {item.description}
-                            </Typography>
-                        </CardContent>
-                    </CardActionArea>
-                    <CardActions>
-                        <Button size="small" color="primary">
-                            Learn More
-                    </Button>
-                    </CardActions>
-                </Card>
+                <CatalogItem item={item}></CatalogItem>
             </Grid>
         });
         return (

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { getCatalogItems } from '../actions'
+import { getCatalogItems } from '../actions/catalog'
 import Catalog from '../components/Catalog';
 
 const mapStateToProps = (state: any) => {

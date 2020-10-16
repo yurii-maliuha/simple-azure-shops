@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
-import Sidebar from './components/Sidebar';
+import Sidebar from './containers/SidebarContainer';
 import Catalog from './containers/CatalogContainer';
 import './App.scss';
 
@@ -12,8 +12,8 @@ function App() {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
-        <Sidebar></Sidebar>
         <Catalog></Catalog>
+        <Sidebar></Sidebar>
       </header>
     </div>
   );

@@ -37,5 +37,13 @@ namespace Catalog.API.Controllers
             return Ok(result);
         }
 
+        [HttpGet("categories")]
+        [ProducesResponseType(typeof(IEnumerable<CommodityCategoryModel>), 200)]
+        public async Task<IActionResult> GetCategories()
+        {
+            var result = await _mediator.Send(new GetCommodityCategoriesCommand());
+            return Ok(result);
+        }
+
     }
 }
