@@ -11,19 +11,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Payment", "Payment", "{5197
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ordering", "Ordering", "{F74A0B91-456F-4766-B63C-404D55FDD239}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.API", "Catalog.API\Catalog.API.csproj", "{B05D6169-F38C-494A-8F85-1A34F28E4C01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.API", "Catalog\Catalog.API\Catalog.API.csproj", "{B05D6169-F38C-494A-8F85-1A34F28E4C01}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.Domain", "Catalog.Core\Catalog.Domain.csproj", "{7DDE5FA3-836E-4B71-98AC-45D6EFE65D90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.Domain", "Catalog\Catalog.Core\Catalog.Domain.csproj", "{7DDE5FA3-836E-4B71-98AC-45D6EFE65D90}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.Persistence", "Catalog.Persistent\Catalog.Persistence.csproj", "{D17BF054-9CE7-4905-B31D-F69905F74B7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.Persistence", "Catalog\Catalog.Persistent\Catalog.Persistence.csproj", "{D17BF054-9CE7-4905-B31D-F69905F74B7F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.Service", "Catalog.Service\Catalog.Service.csproj", "{1BDAAE3B-8ECA-4579-8F34-8C9B3B92CCFB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.Service", "Catalog\Catalog.Service\Catalog.Service.csproj", "{1BDAAE3B-8ECA-4579-8F34-8C9B3B92CCFB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{06768E7B-DEA8-4B8D-9363-3CF11B1A2358}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.UnitTests", "Catalog.UnitTests\Catalog.UnitTests.csproj", "{F02EB5E4-B6B1-4CED-A169-891206A98C84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.UnitTests", "Catalog\Catalog.UnitTests\Catalog.UnitTests.csproj", "{F02EB5E4-B6B1-4CED-A169-891206A98C84}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.Infrastructure", "Catalog.Infrastructure\Catalog.Infrastructure.csproj", "{F62F1D50-CFB3-475C-A72C-0EE97D7791E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.Infrastructure", "Catalog\Catalog.Infrastructure\Catalog.Infrastructure.csproj", "{F62F1D50-CFB3-475C-A72C-0EE97D7791E3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D2FE2A43-E41D-4E22-81B4-F24BB21D89D6}"
 EndProject
