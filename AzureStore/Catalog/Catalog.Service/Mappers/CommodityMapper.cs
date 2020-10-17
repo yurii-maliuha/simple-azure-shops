@@ -14,6 +14,8 @@ namespace Catalog.Service.Mappers
             CreateMap<Commodity, CommodityModel>()
                 .ForMember(x => x.Type,
                     x => x.MapFrom(x => x.CommodityTypeId));
+
+            CreateMap<CommodityType, CommodityCategoryModel>();
         }
     }
 }

@@ -17,5 +17,10 @@ namespace Catalog.Persistence.Repositories
         {
             return _context.Commodities.AsQueryable();
         }
+
+        public IQueryable<CommodityType> GetCategories()
+        {
+            return _context.CommodityTypes.AsQueryable();
+        }
     }
 }

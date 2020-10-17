@@ -1,4 +1,4 @@
-import ApiService from '../services/apiService';
+import ApiService from '../../services/apiService';
 
 export const GET_CATALOG_REQUEST = "GET_CATALOG_REQUEST";
 export const GET_CATALOG_SUCCESS = "GET_CATALOG_SUCCESS";
