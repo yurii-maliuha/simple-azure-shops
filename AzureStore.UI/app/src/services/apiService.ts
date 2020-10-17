@@ -3,6 +3,8 @@ import mockCatalog from '../mocks/catalog.json';
 
 export default class ApiService {
     public static GetAllCommodities() {
-        return Promise.resolve(mockCatalog);
+        debugger;
+        return fetch(API_URLS.GET_ALL_COMMODITIES)
+            .then(response => response.json());
     }
 }

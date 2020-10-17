@@ -3,7 +3,6 @@ import { getCatalogItems } from '../actions'
 import Catalog from '../components/Catalog';
 
 const mapStateToProps = (state: any) => {
-    console.log(state);
     return {
         catalogItems: state.catalog.catalogItems
     };
