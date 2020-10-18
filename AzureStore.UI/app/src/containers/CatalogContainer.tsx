@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { getCatalogItems } from '../actions/catalog'
+import { getCatalogItems, selectItemActionCreator } from '../actions/catalog'
 import Catalog from '../components/Catalog';
 
 const mapStateToProps = (state: any) => {
@@ -10,7 +10,8 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        getCatalog: () => dispatch(getCatalogItems())
+        getCatalog: () => dispatch(getCatalogItems()),
+        onItemSelect: (item:any) => selectItemActionCreator(item)
     };
 }
 

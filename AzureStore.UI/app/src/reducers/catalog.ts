@@ -1,4 +1,4 @@
-import { GET_CATALOG_REQUEST, GET_CATALOG_SUCCESS } from '../actions/catalog';
+import { GET_CATALOG_REQUEST, GET_CATALOG_SUCCESS, SELECT_ITEM } from '../actions/catalog';
 import { GET_CATEGORIES_REQUEST, GET_CATEGORIES_SUCCESS } from '../actions/categories';
 
 const initialState = {
@@ -21,6 +21,11 @@ export function catalog(state: any = initialState, action: any) {
                 catalogItems: action.payload
             }
         };
+        case SELECT_ITEM: {
+            return Object.assign({}, state, {
+                selectedItems: [...state.selectedItems, action.payload]
+            });
+        }
         default: {
             return state;
         }

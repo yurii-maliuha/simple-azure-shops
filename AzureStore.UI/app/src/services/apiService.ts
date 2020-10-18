@@ -11,4 +11,14 @@ export default class ApiService {
         return fetch(API_URLS.GET_COMMODITY_CATEGORIES)
             .then(response => response.json());
     }
+
+    public static SubmitOrder(order: any) {
+        return fetch(API_URLS.POST_ORDER, {
+            method: 'POST',
+            body: JSON.stringify(order),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => response.json());
+    }
 }

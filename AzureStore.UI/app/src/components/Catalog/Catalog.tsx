@@ -5,12 +5,15 @@ import CatalogItem from '../Shared/CatalogItem';
 interface Props {
     getCatalog: () => void;
     catalogItems: Array<any>;
+    onItemSelect: (item:any) => void;
 }
 
 export default class Catalog extends React.Component<Props> {
 
     componentDidMount() {
         this.props.getCatalog();
+        this.props.onItemSelect(this.props.catalogItems[0]);
+        this.props.onItemSelect(this.props.catalogItems[1]);
     }
 
     showFullDescription = (id: number) => {
