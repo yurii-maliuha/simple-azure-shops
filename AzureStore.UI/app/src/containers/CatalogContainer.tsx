@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
-import { getCatalogItems } from '../actions/catalog'
+import { filterCatalogItems, getCatalogItems } from '../actions/catalog'
 import Catalog from '../components/Catalog';
+import { SimpleSearchFilter } from '../models/SimpleSearchFilter';
 
 const mapStateToProps = (state: any) => {
     return {
@@ -10,7 +11,8 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        getCatalog: () => dispatch(getCatalogItems())
+        getCatalog: () => dispatch(getCatalogItems()),
+        filterCatalog: (filter: SimpleSearchFilter) => dispatch(filterCatalogItems(filter))
     };
 }
 
