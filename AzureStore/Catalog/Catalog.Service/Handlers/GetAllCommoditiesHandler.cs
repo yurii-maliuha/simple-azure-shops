@@ -24,11 +24,12 @@ namespace Catalog.Service.Handlers
         public async Task<IEnumerable<CommodityModel>> Handle(GetAllCommoditiesCommand request, CancellationToken cancellationToken)
         {
             return await _repository.GetAllCommodities()
+                .Include(x => x.Images)
                 .Select(x => new CommodityModel
             {
                 Id = x.Id,
                 Type = x.Type.Id,
-                ImageUrl = x.ImageUrl,
+                Images = x.Images.Select(y=>y.Url),
                 Price = x.Price,
                 Currency = x.Currency,
                 Amount = x.Amount,

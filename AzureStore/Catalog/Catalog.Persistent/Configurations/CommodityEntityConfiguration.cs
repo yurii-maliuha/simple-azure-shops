@@ -21,12 +21,12 @@ namespace Catalog.Persistence.Configurations
                 .IsRequired();
             builder.Property(x => x.Description)
                 .IsRequired();
-            builder.Property(x => x.ImageUrl)
-                .IsRequired();
             builder.Property(x => x.OnSale);
             builder.Property(x => x.SalePrice);
             builder.HasOne(x => x.Type)
                 .WithMany(x => x.Commodities);
+            builder.HasMany(x => x.Images)
+                .WithOne(x => x.Commodity);
         }
     }
 }

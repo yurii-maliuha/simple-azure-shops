@@ -8,7 +8,7 @@ namespace Catalog.Service.Models
     {
         public int Id { get; set; }
         public string Description { get; set; }
-        public string ImageUrl { get; set; }
+        public IEnumerable<string> Images { get; set; }
         public decimal Price { get; set; }
         public string Currency { get; set; }
         public int Amount { get; set; }
