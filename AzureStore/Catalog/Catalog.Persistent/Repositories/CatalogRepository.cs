@@ -22,5 +22,10 @@ namespace Catalog.Persistence.Repositories
         {
             return _context.CommodityTypes.AsQueryable();
         }
+
+        public Commodity GetCommodity(int id)
+        {
+            return _context.Commodities.FirstOrDefault(x => x.Id == id);
+        }
     }
 }

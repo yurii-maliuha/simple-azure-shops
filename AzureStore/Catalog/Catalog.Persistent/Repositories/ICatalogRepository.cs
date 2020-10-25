@@ -7,6 +7,9 @@ namespace Catalog.Persistence.Repositories
     public interface ICatalogRepository
     {
         IQueryable<Commodity> GetAllCommodities();
+
         IQueryable<CommodityType> GetCategories();
+
+        Commodity GetCommodity(int id);
     }
 }

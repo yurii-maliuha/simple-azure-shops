@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Catalog.Service.Handlers
 {
-    public class GetAllCommoditiesByCategoryHandler : IRequestHandler<GetCommoditiesByCategoryCommand, IEnumerable<CommodityModel>>
+    public class GetAllCommoditiesByCategoryHandler : IRequestHandler<GetCommoditiesByCategoryCommand, IEnumerable<CommodityDetailsModel>>
     {
         private readonly ICatalogRepository _repository;
         private readonly IMapper _mapper;
@@ -24,12 +24,12 @@ namespace Catalog.Service.Handlers
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<CommodityModel>> Handle(GetCommoditiesByCategoryCommand request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<CommodityDetailsModel>> Handle(GetCommoditiesByCategoryCommand request, CancellationToken cancellationToken)
         {
             return await _repository
                 .GetAllCommodities()
                 .Where(x => x.CommodityTypeId == request.CategoryId)
-                .Select(x => _mapper.Map<CommodityModel>(x))
+                .Select(x => _mapper.Map<CommodityDetailsModel>(x))
                 .ToListAsync();
         }
     }

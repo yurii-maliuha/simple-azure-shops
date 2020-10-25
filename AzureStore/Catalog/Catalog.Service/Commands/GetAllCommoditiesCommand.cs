@@ -7,7 +7,7 @@ using MediatR;
 
 namespace Catalog.Service.Commands
 {
-    public class GetAllCommoditiesCommand : IRequest<IEnumerable<CommodityModel>>
+    public class GetAllCommoditiesCommand : IRequest<IEnumerable<CommodityDetailsModel>>
     {
     }
 }

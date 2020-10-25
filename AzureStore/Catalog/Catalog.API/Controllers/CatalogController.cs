@@ -22,31 +22,23 @@ namespace Catalog.API.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<CommodityModel>),200)]
+        [ProducesResponseType(typeof(IEnumerable<CommodityDetailsModel>), 200)]
         public async Task<IActionResult> GetAllCommodities()
         {
             var result = await _mediator.Send(new GetAllCommoditiesCommand());
             return Ok(result);
         }
 
-        [HttpGet("{categoryId:int}")]
-        [ProducesResponseType(typeof(IEnumerable<CommodityModel>), 200)]
-        public async Task<IActionResult> GetCommoditiesByCategory([FromRoute] int categoryId)
+        [HttpGet("{id:int}")]
+        [ProducesResponseType(typeof(CommodityDetailsModel), 200)]
+        public async Task<IActionResult> GetCommodityById([FromRoute] int id)
         {
-            var result = await _mediator.Send(new GetCommoditiesByCategoryCommand(categoryId));
-            return Ok(result);
-        }
-
-        [HttpGet("categories")]
-        [ProducesResponseType(typeof(IEnumerable<CommodityCategoryModel>), 200)]
-        public async Task<IActionResult> GetCategories()
-        {
-            var result = await _mediator.Send(new GetCommodityCategoriesCommand());
+            var result = await _mediator.Send(new GetCommodityByIdCommand(id));
             return Ok(result);
         }
 
         [HttpPost("search")]
-        [ProducesResponseType(typeof(IEnumerable<CommodityModel>), 200)]
+        [ProducesResponseType(typeof(IEnumerable<CommodityDetailsModel>), 200)]
         public async Task<IActionResult> Search([FromBody] SearchFilterModel filter)
         {
             var result = await _mediator.Send(new SearchCommand(filter));
