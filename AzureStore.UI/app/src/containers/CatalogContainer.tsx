@@ -5,7 +5,8 @@ import { SimpleSearchFilter } from '../models/SimpleSearchFilter';
 
 const mapStateToProps = (state: any) => {
     return {
-        catalogItems: state.catalog.catalogItems
+        catalogItems: state.catalog.catalogItems,
+        catalogLoading: state.catalog.catalogLoading
     };
 }
 

@@ -1,13 +1,16 @@
 import React from 'react';
 import { Container, Grid } from '@material-ui/core';
+import { Skeleton } from '@material-ui/lab';
 import HeaderFilter from '../HeaderFilter';
 import CatalogItem from '../Shared/CatalogItem';
 import { SimpleSearchFilter } from '../../models/SimpleSearchFilter';
+import SkeletonCatalogItem from '../Shared/SkeletonCatalogItem';
 
 interface Props {
     getCatalog: () => void;
     filterCatalog: (price: SimpleSearchFilter) => void;
     catalogItems: Array<any>;
+    catalogLoading: boolean;
 }
 
 export default class Catalog extends React.Component<Props> {
@@ -28,13 +31,24 @@ export default class Catalog extends React.Component<Props> {
         }
     }
 
-    render() {
-        const data = this.props.catalogItems ? this.props.catalogItems.map(item => {
-            return <Grid item sm={6} md={4} lg={3}>
-                <CatalogItem item={item}></CatalogItem>
-            </Grid>
-        }) : [];
+    mapGrid = () => {
+        const data = this.props.catalogLoading
+            ? new Array(10).fill(
+                <Grid item sm={6} md={4} lg={3}>
+                    <SkeletonCatalogItem></SkeletonCatalogItem>
+                </Grid>)
+            : this.props.catalogItems ? this.props.catalogItems.map(item => {
+                return <Grid item sm={6} md={4} lg={3}>
+                    <CatalogItem item={item}></CatalogItem>
+                </Grid>
+            }) : [];
 
+        return data;
+    }
+
+    render() {
+
+        const data = this.mapGrid();
         return (
             <Container>
                 <HeaderFilter
