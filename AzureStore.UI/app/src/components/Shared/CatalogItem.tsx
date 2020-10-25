@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Card, CardMedia, CardActionArea, CardActions, CardContent, Typography, Paper } from '@material-ui/core';
+import { Button, Card, CardMedia, CardActionArea, CardActions, CardContent, Typography, Paper, CardHeader } from '@material-ui/core';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.css';
 
@@ -9,6 +9,7 @@ interface Props {
 
 export default class CatalogItem extends React.Component<Props> {
     render() {
+        debugger;
         const images = (this.props.item.images as Array<any>)
             .map(it => {
                 return (<div>
@@ -23,6 +24,9 @@ export default class CatalogItem extends React.Component<Props> {
                 {images}
             </Carousel>
             <CardContent>
+            <Typography variant="h6" component="p">
+                    {this.props.item.name}
+                </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
                     {this.props.item.description}
                 </Typography>
