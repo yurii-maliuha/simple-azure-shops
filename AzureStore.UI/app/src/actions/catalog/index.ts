@@ -1,3 +1,4 @@
+import { SimpleSearchFilter } from '../../models/SimpleSearchFilter';
 import ApiService from '../../services/apiService';
 
 export const GET_CATALOG_REQUEST = "GET_CATALOG_REQUEST";
@@ -40,3 +41,13 @@ export const getCatalogItems = () => {
             });
     }
 }
+
+export const filterCatalogItems = (filter: SimpleSearchFilter) => {
+    return (dispatch: any) => {
+        dispatch(getCatalogItemsRequest());
+        return ApiService.FilterCommodities(filter)
+            .then((result) => {
+                dispatch(getCatalogItemsSuccess(result));
+            });
+        }
+    }

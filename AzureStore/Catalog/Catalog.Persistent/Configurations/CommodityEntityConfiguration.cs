@@ -13,20 +13,22 @@ namespace Catalog.Persistence.Configurations
         {
             builder.ToTable("Commodities");
             builder.HasKey(x => x.Id);
-
-            builder.Property(x => x.Amount);
+            builder.Property(x => x.Name)
+                .IsRequired();
+            builder.Property(x => x.Amount)
+                .IsRequired();
             builder.Property(x => x.Currency)
                 .IsRequired();
             builder.Property(x => x.Price)
                 .IsRequired();
             builder.Property(x => x.Description)
                 .IsRequired();
-            builder.Property(x => x.ImageUrl)
-                .IsRequired();
             builder.Property(x => x.OnSale);
             builder.Property(x => x.SalePrice);
             builder.HasOne(x => x.Type)
                 .WithMany(x => x.Commodities);
+            builder.HasMany(x => x.Images)
+                .WithOne(x => x.Commodity);
         }
     }
 }

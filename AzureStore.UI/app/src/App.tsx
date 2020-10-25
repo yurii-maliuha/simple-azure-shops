@@ -4,19 +4,22 @@ import Sidebar from './containers/SidebarContainer';
 import Catalog from './containers/CatalogContainer';
 import OrderForm from './containers/OrderFormContainer';
 import './App.scss';
+import { Container, Grid } from '@material-ui/core';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
+      <Container>
+        <Grid container>
+          <Grid item xs={2}>
+            <Sidebar />
+          </Grid>
         <OrderForm></OrderForm>
-        <Catalog></Catalog>
-        <Sidebar></Sidebar>
-      </header>
+          <Grid item xs>
+            <Catalog></Catalog>
+          </Grid>
+        </Grid>
+      </Container>
     </div>
   );
 }

@@ -18,10 +18,8 @@ export const getCategoriesSuccess = (payload: any) => {
 }
 
 export const getCategoriesAction = () => {
-    console.log('get categories');
     return (dispatch: any) => {
         dispatch(getCategoriesRequest());
-        console.log('step 1');
         return ApiService.GetCommodityCategories()
             .then((result) => {
                 dispatch(getCategoriesSuccess(result));

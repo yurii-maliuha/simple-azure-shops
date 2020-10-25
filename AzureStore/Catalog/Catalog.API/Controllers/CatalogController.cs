@@ -45,5 +45,12 @@ namespace Catalog.API.Controllers
             return Ok(result);
         }
 
+        [HttpPost("search")]
+        [ProducesResponseType(typeof(IEnumerable<CommodityModel>), 200)]
+        public async Task<IActionResult> Search([FromBody] SearchFilterModel filter)
+        {
+            var result = await _mediator.Send(new SearchCommand(filter));
+            return Ok(result);
+        }
     }
 }
