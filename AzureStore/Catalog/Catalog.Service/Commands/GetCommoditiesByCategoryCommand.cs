@@ -8,7 +8,7 @@ namespace Catalog.Service.Commands
 {
     public class GetCommoditiesByCategoryCommand : IRequest<IEnumerable<CommodityModel>>
     {
-        public int CategoryId { get; set; }
+        public int CategoryId { get; }
 
         public GetCommoditiesByCategoryCommand(int category)
         {
