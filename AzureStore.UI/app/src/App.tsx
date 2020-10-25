@@ -1,26 +1,33 @@
 import React from 'react';
 import logo from './logo.svg';
-import Sidebar from './containers/SidebarContainer';
 import Catalog from './containers/CatalogContainer';
 import OrderForm from './containers/OrderFormContainer';
+import Basket from './containers/BasketContainer';
 import './App.scss';
 import { Container, Grid } from '@material-ui/core';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import Home from './components/Home';
 
 function App() {
   return (
-    <div className="App">
-      <Container>
-        <Grid container>
-          <Grid item xs={2}>
-            <Sidebar />
-          </Grid>
-        <OrderForm></OrderForm>
-          <Grid item xs>
-            <Catalog></Catalog>
-          </Grid>
-        </Grid>
-      </Container>
-    </div>
+    <Router>
+      <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/basket">
+            <Basket />
+          </Route>
+          <Route path="/ordering">
+            <OrderForm />
+          </Route>
+        </Switch>
+    </Router>
   );
 }
 

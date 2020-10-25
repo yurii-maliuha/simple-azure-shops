@@ -20,28 +20,24 @@ export default class OrderForm extends React.Component<Props, State> {
     constructor(props: any) {
         super(props);
         this.state = { userEmail: "", orderItems: []};
-        this.handleEmailChange = this.handleEmailChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
-        console.log(this.props.selectedItems);
     }
 
-    handleSubmit(event: any) {
+    handleSubmit = (event: any) => {
         event.preventDefault();
         const {userEmail } = this.state;
         const order = {
             userEmail: userEmail,
             orderItems: [{comodityId: 1, quantity: 10}]
         };
-        console.log(this.props.selectedItems);
 
         // this.props.submitOrder(order);
         this.setState({});
     }
 
-    handleEmailChange(event: any) {
+    handleEmailChange = (event: any) => {
         this.setState({ "userEmail": event.target.value });
     }
 

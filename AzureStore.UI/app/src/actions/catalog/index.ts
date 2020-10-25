@@ -26,11 +26,6 @@ export const selectItemAction = (item: any) => {
     };
 }
 
-export const selectItemActionCreator = (item: any) => {
-    return (dispatch: any) => {
-        dispatch(selectItemAction(item)); 
-    }
-}
 
 export const getCatalogItems = () => {
     return (dispatch: any) => {
