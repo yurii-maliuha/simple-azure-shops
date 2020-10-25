@@ -4,7 +4,7 @@ import OrderForm from '../components/OrderForm';
 
 const mapStateToProps = (state: any) => {
     return {
-        selectedItems: state.selectedItems
+        selectedItems: state.catalog.selectedItems
     };
 }
 

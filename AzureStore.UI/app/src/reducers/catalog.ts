@@ -3,7 +3,8 @@ import { GET_CATEGORIES_REQUEST, GET_CATEGORIES_SUCCESS } from '../actions/categ
 
 const initialState = {
     catalogLoading: false,
-    catalogItems: []
+    catalogItems: [],
+    selectedItems: []
 };
 
 export function catalog(state: any = initialState, action: any) {
@@ -22,10 +23,11 @@ export function catalog(state: any = initialState, action: any) {
             }
         };
         case SELECT_ITEM: {
-            return Object.assign({}, state, {
-                selectedItems: [...state.selectedItems, action.payload]
-            });
-        }
+            return {
+                ...state,
+                selectedItems: [...state.selectedItems, action.selectedItem]
+            }                  
+        };
         default: {
             return state;
         }

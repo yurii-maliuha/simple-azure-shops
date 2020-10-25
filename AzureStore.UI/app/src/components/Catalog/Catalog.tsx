@@ -12,6 +12,10 @@ export default class Catalog extends React.Component<Props> {
 
     componentDidMount() {
         this.props.getCatalog();
+
+    }
+
+    componentDidUpdate() {
         this.props.onItemSelect(this.props.catalogItems[0]);
         this.props.onItemSelect(this.props.catalogItems[1]);
     }

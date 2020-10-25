@@ -35,8 +35,9 @@ export default class OrderForm extends React.Component<Props, State> {
             userEmail: userEmail,
             orderItems: [{comodityId: 1, quantity: 10}]
         };
+        console.log(this.props.selectedItems);
 
-        this.props.submitOrder(order);
+        // this.props.submitOrder(order);
         this.setState({});
     }
 
