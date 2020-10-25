@@ -13,8 +13,10 @@ namespace Catalog.Persistence.Configurations
         {
             builder.ToTable("Commodities");
             builder.HasKey(x => x.Id);
-
-            builder.Property(x => x.Amount);
+            builder.Property(x => x.Name)
+                .IsRequired();
+            builder.Property(x => x.Amount)
+                .IsRequired();
             builder.Property(x => x.Currency)
                 .IsRequired();
             builder.Property(x => x.Price)

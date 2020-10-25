@@ -24,12 +24,13 @@ namespace Catalog.Persistence.Seed
             var cFaker = new Faker<Commodity>()
                 .RuleFor(x => x.Id, x => x.IndexFaker + 1)
                 .RuleFor(x => x.Currency, "UAH")
+                .RuleFor(x => x.Name, x => x.Commerce.ProductName())
                 .RuleFor(x => x.Amount, x => x.Random.Number(2000))
                 .RuleFor(x => x.Description, x => x.Commerce.ProductDescription())
                 .RuleFor(x => x.Price, x => decimal.Parse(x.Commerce.Price()));
 
             var imageFaker = new Faker<CommodityImage>()
-                .Ignore(x=> x.Commodity)
+                .Ignore(x => x.Commodity)
                 .RuleFor(x => x.Id, x => x.IndexFaker + 1)
                 .RuleFor(x => x.Url, x => x.Image.PicsumUrl());
 

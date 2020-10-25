@@ -26,17 +26,18 @@ namespace Catalog.Service.Handlers
             return await _repository.GetAllCommodities()
                 .Include(x => x.Images)
                 .Select(x => new CommodityModel
-            {
-                Id = x.Id,
-                Type = x.Type.Id,
-                Images = x.Images.Select(y=>y.Url),
-                Price = x.Price,
-                Currency = x.Currency,
-                Amount = x.Amount,
-                SalePrice = x.SalePrice,
-                OnSale = x.OnSale,
-                Description = x.Description
-            }).ToListAsync(cancellationToken);
+                {
+                    Id = x.Id,
+                    Type = x.Type.Id,
+                    Name = x.Name,
+                    Images = x.Images.Select(y => y.Url),
+                    Price = x.Price,
+                    Currency = x.Currency,
+                    Amount = x.Amount,
+                    SalePrice = x.SalePrice,
+                    OnSale = x.OnSale,
+                    Description = x.Description
+                }).ToListAsync(cancellationToken);
         }
     }
 }

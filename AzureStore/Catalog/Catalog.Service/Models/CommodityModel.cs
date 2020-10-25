@@ -7,6 +7,7 @@ namespace Catalog.Service.Models
     public class CommodityModel
     {
         public int Id { get; set; }
+        public string Name { get; set; }
         public string Description { get; set; }
         public IEnumerable<string> Images { get; set; }
         public decimal Price { get; set; }
