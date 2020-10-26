@@ -11,6 +11,7 @@ interface Props {
     filterCatalog: (price: SimpleSearchFilter) => void;
     catalogItems: Array<any>;
     catalogLoading: boolean;
+    onItemSelect: (item:any) => void;
 }
 
 export default class Catalog extends React.Component<Props> {
@@ -18,12 +19,20 @@ export default class Catalog extends React.Component<Props> {
     state = {
         maxPrice: 0
     };
+    itemSelected = false;
 
     componentDidMount() {
         this.props.getCatalog();
+
     }
 
     componentDidUpdate() {
+        if(this.props.catalogItems[0] && !this.itemSelected) {
+            this.props.onItemSelect(this.props.catalogItems[0]);
+            this.props.onItemSelect(this.props.catalogItems[1]);
+            this.itemSelected = true;
+        }
+
         const items = this.props.catalogItems;
         if (items.length > 0 && this.state.maxPrice === 0) {
             const max = Math.max.apply(Math, items.map(it => it.price));

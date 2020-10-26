@@ -1,9 +1,10 @@
-import { GET_CATALOG_REQUEST, GET_CATALOG_SUCCESS } from '../actions/catalog';
+import { GET_CATALOG_REQUEST, GET_CATALOG_SUCCESS, SELECT_ITEM } from '../actions/catalog';
 import { GET_CATEGORIES_REQUEST, GET_CATEGORIES_SUCCESS } from '../actions/categories';
 
 const initialState = {
     catalogLoading: false,
-    catalogItems: []
+    catalogItems: [],
+    selectedItems: []
 };
 
 export function catalog(state: any = initialState, action: any) {
@@ -20,6 +21,12 @@ export function catalog(state: any = initialState, action: any) {
                 catalogLoading: false,
                 catalogItems: action.payload
             }
+        };
+        case SELECT_ITEM: {
+            return {
+                ...state,
+                selectedItems: [...state.selectedItems, action.selectedItem]
+            }                  
         };
         default: {
             return state;

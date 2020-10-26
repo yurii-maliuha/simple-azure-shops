@@ -9,7 +9,6 @@ interface Props {
 
 export default class CatalogItem extends React.Component<Props> {
     render() {
-        debugger;
         const images = (this.props.item.images as Array<any>)
             .map(it => {
                 return (<div>

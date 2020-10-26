@@ -12,15 +12,28 @@ namespace Orders.API
 {
 	public class Startup
 	{
-		public Startup(IConfiguration configuration)
+		private readonly IConfiguration _configuration;
+		private readonly IWebHostEnvironment _hostingEnvironment;
+
+		public Startup(IConfiguration configuration, IWebHostEnvironment hostingEnvironment)
 		{
-			Configuration = configuration;
+			_configuration = configuration;
+			_hostingEnvironment = hostingEnvironment;
 		}
 
-		public IConfiguration Configuration { get; }
 
 		public void ConfigureServices(IServiceCollection services)
 		{
+			if (_hostingEnvironment.IsDevelopment())
+			{
+				services.AddCors(o => o.AddPolicy("CORS", builder =>
+				{
+					builder.AllowAnyOrigin()
+						.AllowAnyMethod()
+						.AllowAnyHeader();
+				}));
+			}
+
 			services.AddControllers()
 				.AddNewtonsoftJson(options =>
 				options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
@@ -28,7 +41,7 @@ namespace Orders.API
 			services.AddMediatR(typeof(Startup), typeof(CreateOrderHandler));
 			services.AddDbContext<OrderingContext>(c =>
 			{
-				c.UseSqlServer(Configuration["ConnectionString"]);
+				c.UseSqlServer(_configuration["ConnectionString"]);
 			});
 
 			services.AddTransient<Ordering.Persistent.Repositories.IOrderRepository, Ordering.Persistent.Repositories.OrderRepository>();
@@ -39,6 +52,7 @@ namespace Orders.API
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
+				app.UseCors("CORS");
 			}
 
 			app.UseHttpsRedirection();
