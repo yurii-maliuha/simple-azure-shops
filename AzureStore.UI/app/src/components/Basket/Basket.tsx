@@ -91,7 +91,6 @@ export default class Basket extends React.Component<Props> {
                 </TableBody>
               </Table>
             </TableContainer>
-            
           </div>
         );
     }

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using Catalog.Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace Catalog.Persistence.Repositories
 {
@@ -25,7 +26,9 @@ namespace Catalog.Persistence.Repositories
 
         public Commodity GetCommodity(int id)
         {
-            return _context.Commodities.FirstOrDefault(x => x.Id == id);
+            return _context.Commodities
+                .Include(x => x.Images)
+                .FirstOrDefault(x => x.Id == id);
         }
     }
 }
