@@ -16,7 +16,9 @@ namespace Catalog.Service.Mappers
                 .ForMember(x => x.Type,
                     x => x.MapFrom(x => x.CommodityTypeId))
                 .ForMember(x => x.Images, opt => opt.MapFrom(
-                    x => x.Images.Select(im => im.Url)));
+                    x => x.Images.Select(im => im.Url)))
+                .ForMember(x => x.Price,
+                    x => x.AddTransform(value => Math.Round(value, 2)));
             CreateMap<CommodityType, CommodityCategoryModel>();
         }
     }
