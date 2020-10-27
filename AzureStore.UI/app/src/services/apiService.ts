@@ -5,8 +5,6 @@ import { SimpleSearchFilter } from '../models/SimpleSearchFilter';
 
 export default class ApiService {
     public static GetAllCommodities(page: number) {
-        console.log(page);
-        console.log(API_URLS.GET_ALL_COMMODITIES.concat(`?page=${page.toString()}`));
         return fetch(API_URLS.GET_ALL_COMMODITIES.concat(`?page=${page.toString()}`))
             .then(response => response.json());
     }
