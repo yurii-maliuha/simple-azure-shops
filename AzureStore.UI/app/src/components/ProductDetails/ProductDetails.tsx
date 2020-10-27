@@ -1,8 +1,24 @@
-import { Breadcrumbs, Container, Link } from '@material-ui/core';
+import { Breadcrumbs, Button, Container, Grid, Link, styled, Typography } from '@material-ui/core';
 import React from 'react';
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import { Carousel } from 'react-responsive-carousel';
-import { useParams } from 'react-router-dom';
 import Commodity from '../../models/Commodity';
+
+const StyledBreadcrumbs = styled(Breadcrumbs)({
+    marginBottom: '4rem'
+});
+
+const StyledDescription = styled('div')({
+    height: '80%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between'
+});
+
+const StyledActionContainer = styled('div')({
+    display: 'flex',
+    justifyContent: 'space-between'
+});
 
 interface Props {
     commodity: Commodity;
@@ -29,22 +45,56 @@ export default class ProductDetails extends React.Component<Props> {
                     <img src={it} />
                 </div>)
             });
+        const price = commodity.onSale ? (
+            <Typography variant="h5">
+                <s>{commodity.price}</s>
+                <Typography color="error">
+                    {commodity.salePrice} {commodity.currency}
+                </Typography>
+            </Typography>) :
+            <Typography variant="h5">
+                {commodity.price} {commodity.currency}
+            </Typography>;
 
         return (<Container>
-            <Breadcrumbs aria-label="breadcrumb">
+            <StyledBreadcrumbs aria-label="breadcrumb">
                 <Link color="inherit" href="/">
                     Home
                 </Link>
                 <Link
                     color="textPrimary"
-                    href={"/catalog/" + this.props.commodity.id}
+                    href={"/catalog/" + commodity.id}
                     aria-current="page">
-                    {this.props.commodity.name}
+                    {commodity.name}
                 </Link>
-            </Breadcrumbs>
-            <Carousel>
-                {images}
-            </Carousel>
+            </StyledBreadcrumbs>
+            <Container>
+                <Typography variant="h4">
+                    {commodity.name}
+                </Typography>
+                <Grid container spacing={3}>
+                    <Grid item xs={5}>
+                        <Carousel showThumbs>
+                            {images}
+                        </Carousel>
+                    </Grid>
+                    <Grid item xs={6} direction="column" justify="space-between">
+                        <StyledDescription>
+                            <div>
+                                {commodity.description}
+                            </div>
+                            <StyledActionContainer>
+                                {price}
+                                <Button color="primary" variant="contained">
+                                    Add to cart
+                                    <AddShoppingCartIcon
+                                        style={{ marginLeft: '1rem' }} />
+                                </Button>
+                            </StyledActionContainer>
+                        </StyledDescription>
+                    </Grid>
+                </Grid>
+            </Container>
         </Container>);
     }
 }
