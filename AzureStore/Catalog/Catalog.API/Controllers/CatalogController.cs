@@ -22,10 +22,10 @@ namespace Catalog.API.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<CommodityDetailsModel>), 200)]
-        public async Task<IActionResult> GetAllCommodities()
+        [ProducesResponseType(typeof(Page<CommodityDetailsModel>), 200)]
+        public async Task<IActionResult> GetAllCommodities([FromQuery] int? page, [FromQuery] int? perPage)
         {
-            var result = await _mediator.Send(new GetAllCommoditiesCommand());
+            var result = await _mediator.Send(new GetAllCommoditiesCommand(perPage, page));
             return Ok(result);
         }
 
