@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using AutoMapper;
 using Catalog.Domain;
@@ -11,10 +12,13 @@ namespace Catalog.Service.Mappers
     {
         public CommodityMapper()
         {
-            CreateMap<Commodity, CommodityModel>()
+            CreateMap<Commodity, CommodityDetailsModel>()
                 .ForMember(x => x.Type,
-                    x => x.MapFrom(x => x.CommodityTypeId));
-
+                    x => x.MapFrom(x => x.CommodityTypeId))
+                .ForMember(x => x.Images, opt => opt.MapFrom(
+                    x => x.Images.Select(im => im.Url)))
+                .ForMember(x => x.Price,
+                    x => x.AddTransform(value => Math.Round(value, 2)));
             CreateMap<CommodityType, CommodityCategoryModel>();
         }
     }

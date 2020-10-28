@@ -12,7 +12,7 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        getCatalog: () => dispatch(getCatalogItems()),
+        getCatalog: (page: number) => dispatch(getCatalogItems(page)),
         filterCatalog: (filter: SimpleSearchFilter) => dispatch(filterCatalogItems(filter)),
         onItemSelect: (item:any) => dispatch(selectItemAction(item))
     };

@@ -28,7 +28,8 @@ namespace Catalog.Persistence.Configurations
             builder.HasOne(x => x.Type)
                 .WithMany(x => x.Commodities);
             builder.HasMany(x => x.Images)
-                .WithOne(x => x.Commodity);
+                .WithOne(x => x.Commodity)
+                .HasForeignKey(x => x.CommodityId);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using Catalog.Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace Catalog.Persistence.Repositories
 {
@@ -21,6 +22,13 @@ namespace Catalog.Persistence.Repositories
         public IQueryable<CommodityType> GetCategories()
         {
             return _context.CommodityTypes.AsQueryable();
+        }
+
+        public Commodity GetCommodity(int id)
+        {
+            return _context.Commodities
+                .Include(x => x.Images)
+                .FirstOrDefault(x => x.Id == id);
         }
     }
 }
