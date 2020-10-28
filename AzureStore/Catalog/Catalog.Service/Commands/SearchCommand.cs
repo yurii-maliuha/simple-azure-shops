@@ -6,7 +6,7 @@ using MediatR;
 
 namespace Catalog.Service.Commands
 {
-    public class SearchCommand : IRequest<IEnumerable<CommodityModel>>
+    public class SearchCommand : IRequest<IEnumerable<CommodityDetailsModel>>
     {
         public SearchFilterModel Filter { get; }
 

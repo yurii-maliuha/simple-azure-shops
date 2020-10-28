@@ -6,7 +6,7 @@ using MediatR;
 
 namespace Catalog.Service.Commands
 {
-    public class GetCommoditiesByCategoryCommand : IRequest<IEnumerable<CommodityModel>>
+    public class GetCommoditiesByCategoryCommand : IRequest<IEnumerable<CommodityDetailsModel>>
     {
         public int CategoryId { get; }
 

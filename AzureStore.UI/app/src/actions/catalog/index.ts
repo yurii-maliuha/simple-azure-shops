@@ -27,10 +27,10 @@ export const selectItemAction = (item: any) => {
 }
 
 
-export const getCatalogItems = () => {
+export const getCatalogItems = (page: number) => {
     return (dispatch: any) => {
         dispatch(getCatalogItemsRequest());
-        return ApiService.GetAllCommodities()
+        return ApiService.GetAllCommodities(page)
             .then((result) => {
                 dispatch(getCatalogItemsSuccess(result));
             });

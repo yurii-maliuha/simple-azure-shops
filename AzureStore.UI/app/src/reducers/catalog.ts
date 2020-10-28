@@ -3,7 +3,10 @@ import { GET_CATEGORIES_REQUEST, GET_CATEGORIES_SUCCESS } from '../actions/categ
 
 const initialState = {
     catalogLoading: false,
-    catalogItems: [],
+    catalogItems: {
+        data: [],
+        totalPages: 1
+    },
     selectedItems: []
 };
 
@@ -26,7 +29,7 @@ export function catalog(state: any = initialState, action: any) {
             return {
                 ...state,
                 selectedItems: [...state.selectedItems, action.selectedItem]
-            }                  
+            }
         };
         default: {
             return state;

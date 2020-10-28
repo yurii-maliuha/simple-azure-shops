@@ -1,6 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
-import Catalog from './containers/CatalogContainer';
+import Product from './containers/ProductContainer';
 import OrderForm from './containers/OrderFormContainer';
 import Basket from './containers/BasketContainer';
 import './App.scss';
@@ -17,16 +16,19 @@ function App() {
   return (
     <Router>
       <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/basket">
-            <Basket />
-          </Route>
-          <Route path="/ordering">
-            <OrderForm />
-          </Route>
-        </Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/basket">
+          <Basket />
+        </Route>
+        <Route path="/ordering">
+          <OrderForm />
+        </Route>
+        <Route path="/catalog/:id">
+          <Product></Product>
+        </Route>
+      </Switch>
     </Router>
   );
 }

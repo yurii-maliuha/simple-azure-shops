@@ -1,29 +1,37 @@
 import React from 'react';
-import { Container, Grid } from '@material-ui/core';
-import { Skeleton } from '@material-ui/lab';
+import { Container, Grid, styled } from '@material-ui/core';
+import { Pagination } from '@material-ui/lab';
 import HeaderFilter from '../HeaderFilter';
 import CatalogItem from '../Shared/CatalogItem';
 import { SimpleSearchFilter } from '../../models/SimpleSearchFilter';
 import SkeletonCatalogItem from '../Shared/SkeletonCatalogItem';
+import Commodity from '../../models/Commodity';
+import Page from '../../models/Page';
+
+const PaginationContainer = styled('div')({
+    margin: '2rem 0',
+    display: 'flex',
+    justifyContent: 'center'
+});
 
 interface Props {
-    getCatalog: () => void;
+    getCatalog: (page: number) => void;
     filterCatalog: (price: SimpleSearchFilter) => void;
-    catalogItems: Array<any>;
+    catalogItems: Page<Commodity>;
     catalogLoading: boolean;
-    onItemSelect: (item:any) => void;
+    onItemSelect: (item: any) => void;
 }
 
 export default class Catalog extends React.Component<Props> {
 
     state = {
-        maxPrice: 0
+        maxPrice: 0,
+        page: 1
     };
     itemSelected = false;
 
     componentDidMount() {
-        this.props.getCatalog();
-
+        this.props.getCatalog(this.state.page);
     }
 
     componentDidUpdate() {
@@ -33,8 +41,8 @@ export default class Catalog extends React.Component<Props> {
             this.itemSelected = true;
         }
 
-        const items = this.props.catalogItems;
-        if (items.length > 0 && this.state.maxPrice === 0) {
+        const items = this.props.catalogItems.data;
+        if (items?.length > 0 && this.state.maxPrice === 0) {
             const max = Math.max.apply(Math, items.map(it => it.price));
             this.setState({ maxPrice: max });
         }
@@ -46,7 +54,7 @@ export default class Catalog extends React.Component<Props> {
                 <Grid item sm={6} md={4} lg={3}>
                     <SkeletonCatalogItem></SkeletonCatalogItem>
                 </Grid>)
-            : this.props.catalogItems ? this.props.catalogItems.map(item => {
+            : this.props.catalogItems?.data ? this.props.catalogItems.data.map(item => {
                 return <Grid item sm={6} md={4} lg={3}>
                     <CatalogItem item={item}></CatalogItem>
                 </Grid>
@@ -55,8 +63,12 @@ export default class Catalog extends React.Component<Props> {
         return data;
     }
 
-    render() {
+    handlePageChanges = (event: any, value: number) => {
+        this.setState({ page: value });
+        this.props.getCatalog(value);
+    }
 
+    render() {
         const data = this.mapGrid();
         return (
             <Container>
@@ -70,6 +82,13 @@ export default class Catalog extends React.Component<Props> {
                     alignItems="stretch">
                     {data}
                 </Grid>
+                <PaginationContainer>
+                    <Pagination
+                        defaultPage={1}
+                        count={this.props.catalogItems.totalPages}
+                        siblingCount={1}
+                        onChange={this.handlePageChanges} />
+                </PaginationContainer>
             </Container>
         );
     }
