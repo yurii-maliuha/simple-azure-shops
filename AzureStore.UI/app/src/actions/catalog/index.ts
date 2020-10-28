@@ -4,6 +4,7 @@ import ApiService from '../../services/apiService';
 export const GET_CATALOG_REQUEST = "GET_CATALOG_REQUEST";
 export const GET_CATALOG_SUCCESS = "GET_CATALOG_SUCCESS";
 export const GET_CATALOG_ERROR = "GET_CATALOG_ERROR";
+export const SELECT_ITEM = "SELECT_ITEM";
 
 export const getCatalogItemsRequest = () => {
     return {
@@ -17,6 +18,14 @@ export const getCatalogItemsSuccess = (payload: any) => {
         payload
     };
 }
+
+export const selectItemAction = (item: any) => {
+    return {
+        type: SELECT_ITEM,
+        selectedItem: item
+    };
+}
+
 
 export const getCatalogItems = () => {
     return (dispatch: any) => {

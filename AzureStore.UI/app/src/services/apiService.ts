@@ -23,4 +23,14 @@ export default class ApiService {
                 body: JSON.stringify(filter)})
             .then(response => response.json());
     }
+
+    public static SubmitOrder(order: any) {
+        return fetch(API_URLS.POST_ORDER, {
+            method: 'POST',
+            body: JSON.stringify(order),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => response.json());
+    }
 }
