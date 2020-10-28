@@ -4,8 +4,8 @@ import mockCatalog from '../mocks/catalog.json';
 import { SimpleSearchFilter } from '../models/SimpleSearchFilter';
 
 export default class ApiService {
-    public static GetAllCommodities() {
-        return fetch(API_URLS.GET_ALL_COMMODITIES)
+    public static GetAllCommodities(page: number) {
+        return fetch(API_URLS.GET_ALL_COMMODITIES.concat(`?page=${page.toString()}`))
             .then(response => response.json());
     }
 
