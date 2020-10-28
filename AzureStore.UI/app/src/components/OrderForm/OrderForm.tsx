@@ -38,7 +38,7 @@ export default class OrderForm extends React.Component<Props, State> {
     }
 
     handleEmailChange = (event: any) => {
-        this.setState({ "userEmail": event.target.value });
+        this.setState({ userEmail: event.target.value });
     }
 
     render() {

@@ -36,11 +36,11 @@ export default class Catalog extends React.Component<Props> {
 	componentDidUpdate() {
 		if (this.props.catalogItems.data[0] && !this.itemSelected) {
 			this.props.onItemSelect({
-				item: this.props.catalogItems.data[0],
+				product: this.props.catalogItems.data[0],
 				quantity: 1,
 			});
 			this.props.onItemSelect({
-				item: this.props.catalogItems.data[1],
+				product: this.props.catalogItems.data[1],
 				quantity: 1,
 			});
 			this.itemSelected = true;

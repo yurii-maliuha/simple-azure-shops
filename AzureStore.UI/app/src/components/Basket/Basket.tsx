@@ -12,10 +12,12 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import { Container } from '@material-ui/core';
 
 interface Props {
     selectedItems: Array<any>;
     onItemSelect: (item:any) => void;
+    submitOrder: (order: any) => void;
 }
 
 const StyledTableCell = withStyles((theme: Theme) =>
@@ -43,33 +45,63 @@ const StyledTableRow = withStyles((theme: Theme) =>
 
 export default class Basket extends React.Component<Props> {
     state = {
-        orderItems : [{item:{id: 0, amount:0, name: ""}, quntity: 0}],
-        total: 0
+        orderItems : [{product:{id: 0, amount:0, name: ""}, quantity: 0}],
+        total: 0,
+        userEmail: ""
     };
 
     componentDidMount() {
         if(this.props.selectedItems) {
           this.setState({
             orderItems : this.props.selectedItems,
-            total: this.getTotal()
+            total: this.getTotal(this.props.selectedItems)
           });
         }
     }
 
     handleCellClick = (id: any) => {
       let items = [...this.state.orderItems];
-      var itemIndex = items.findIndex(o => o.item.id == id);
+      var itemIndex = items.findIndex(o => o.product.id == id);
       items.splice(itemIndex, 1);
       this.setState({
         orderItems : items,
-        total: this.getTotal()
+        total: this.getTotal(items)
       });
-
     }
 
-    getTotal(): number {
+    handleQuantityChange = (productId: number, event: any) => {
+      let items = [...this.state.orderItems];
+      let itemIndex = items.findIndex(x => x.product.id === productId);
+      if(itemIndex >= 0) {
+        let item = items[itemIndex];
+        const newQuantity = +event.target.value;
+        item.quantity = newQuantity;
+        items.splice(itemIndex, 1, item);
+        this.setState({
+          orderItems : items,
+          total: this.getTotal(items)
+        });
+      }
+    }
+
+    handleEmailChange = (event: any) => {
+        this.setState({ userEmail: event.target.value });
+    }
+
+    handleCreateOrderClick = () => {
+      const order = {
+        userEmail: this.state.userEmail,
+        orderItems: this.state.orderItems.map(o => {
+         return {comodityId: o.product.id, quantity: o.quantity};
+        })
+      };
+
+      this.props.submitOrder(order);
+    }
+
+    getTotal(items: any): number {
       let total = 0;
-      this.props.selectedItems.forEach(item => total+=item.item.amount*item.quantity);
+      items.forEach((item: any) => total+=item.product.amount*item.quantity);
       return total;
     }
 
@@ -80,8 +112,7 @@ export default class Basket extends React.Component<Props> {
       };
 
       return (
-        <div style={tableStyle}>
-          <Paper elevation={3} style={{padding: "40px"}}>
+        <Container style={{padding: "40px"}}>
             <TableContainer component={Paper}>
             <Table aria-label="simple table">
               <TableHead>
@@ -94,15 +125,20 @@ export default class Basket extends React.Component<Props> {
               </TableHead>
               <TableBody>
                 {this.state.orderItems.map((item) => (
-                    <StyledTableRow key={item.item.name}>
+                    <StyledTableRow key={item.product.name}>
                       <TableCell component="th" scope="row">
-                        {item.item.name}
+                        {item.product.name}
                       </TableCell>
                       <StyledTableCell align="right">
-                        <TextField defaultValue="1" size="small" type="number" InputProps={{inputProps: { min: 1 }}}/>
+                        <TextField 
+                          defaultValue="1" 
+                          size="small" 
+                          type="number" 
+                          InputProps={{inputProps: { min: 1 }}}
+                          onChange={(e) => this.handleQuantityChange(item.product.id, e)}/>
                       </StyledTableCell>
-                      <StyledTableCell align="right">{item.item.amount}</StyledTableCell>
-                      <StyledTableCell align="right" onClick={() => this.handleCellClick(item.item.id)}>
+                      <StyledTableCell align="right">{item.product.amount}</StyledTableCell>
+                      <StyledTableCell align="right" onClick={() => this.handleCellClick(item.product.id)}>
                           <IconButton>
                             <DeleteIcon/>
                           </IconButton>
@@ -113,15 +149,18 @@ export default class Basket extends React.Component<Props> {
               </TableBody>
             </Table>
           </TableContainer>
-          <div style={{marginTop:"20px", display:"flex", justifyContent: "space-between"}}>
+          <div style={{marginTop:"20px", display:"flex", justifyContent: "flex-end"}}>
             <h3>Total: {this.state.total}</h3>
-            <Button variant="contained" color="primary" style={{margin:"10px"}}
-              disabled={!this.state.orderItems.length}>
+          </div>
+          <div style={{marginTop:"20px", display:"flex", justifyContent: "space-between"}}>
+            <TextField required label="Please enter your email" onChange={this.handleEmailChange}/>
+            <Button variant="contained" color="primary"
+              disabled={!this.state.orderItems.length}
+              onClick={() => this.handleCreateOrderClick()}>
               Create Order
             </Button>
           </div>
-          </Paper>
-        </div>
+        </Container>
       );
     }
 }
