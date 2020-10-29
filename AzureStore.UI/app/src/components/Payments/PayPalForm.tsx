@@ -1,13 +1,15 @@
 import React from "react";
 import { PayPalButton } from "react-paypal-button-v2";
 import Order from "../../models/Order";
+import SuccessData from "../../models/paypal/SuccessData";
+import SuccessDetails from "../../models/paypal/SuccessDetails";
 
 interface Props {
 	order: Order;
 }
 
 export default class PayPal extends React.Component<Props> {
-	onSuccess = (details: any, data: any) => {
+	onSuccess = (details: SuccessData, data: SuccessDetails) => {
 		console.log(details);
 		console.log(data);
 	};
