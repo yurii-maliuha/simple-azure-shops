@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { filterCatalogItems, getCatalogItems, selectItemAction } from '../actions/catalog'
+import { filterCatalogItems, getCatalogItems, selectItem } from '../actions/catalog'
 import Catalog from '../components/Catalog';
 import { SimpleSearchFilter } from '../models/SimpleSearchFilter';
 
@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch: any) => {
     return {
         getCatalog: (page: number) => dispatch(getCatalogItems(page)),
         filterCatalog: (filter: SimpleSearchFilter) => dispatch(filterCatalogItems(filter)),
-        onItemSelect: (item:any) => dispatch(selectItemAction(item))
+        onItemSelect: (item:any) => dispatch(selectItem(item))
     };
 }
 

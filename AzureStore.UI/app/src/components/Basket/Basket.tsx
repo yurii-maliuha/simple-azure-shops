@@ -16,7 +16,6 @@ import { Container } from '@material-ui/core';
 
 interface Props {
     selectedItems: Array<any>;
-    onItemSelect: (item:any) => void;
     submitOrder: (order: any) => void;
 }
 
@@ -51,12 +50,10 @@ export default class Basket extends React.Component<Props> {
     };
 
     componentDidMount() {
-        if(this.props.selectedItems) {
-          this.setState({
-            orderItems : this.props.selectedItems,
-            total: this.getTotal(this.props.selectedItems)
-          });
-        }
+      this.setState({
+        orderItems : this.props.selectedItems,
+        total: this.getTotal(this.props.selectedItems)
+      });     
     }
 
     handleCellClick = (id: any) => {
@@ -135,6 +132,7 @@ export default class Basket extends React.Component<Props> {
                           size="small" 
                           type="number" 
                           InputProps={{inputProps: { min: 1 }}}
+                          value={item.quantity}
                           onChange={(e) => this.handleQuantityChange(item.product.id, e)}/>
                       </StyledTableCell>
                       <StyledTableCell align="right">{item.product.amount}</StyledTableCell>
