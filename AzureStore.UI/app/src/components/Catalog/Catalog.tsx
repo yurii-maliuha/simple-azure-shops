@@ -19,7 +19,6 @@ interface Props {
 	filterCatalog: (price: SimpleSearchFilter) => void;
 	catalogItems: Page<Commodity>;
 	catalogLoading: boolean;
-	onItemSelect: (item: any) => void;
 }
 
 export default class Catalog extends React.Component<Props> {

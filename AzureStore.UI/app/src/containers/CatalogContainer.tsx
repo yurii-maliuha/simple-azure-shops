@@ -18,8 +18,7 @@ const mapDispatchToProps = (dispatch: any) => {
 	return {
 		getCatalog: (page: number) => dispatch(getCatalogItems(page)),
 		filterCatalog: (filter: SimpleSearchFilter) =>
-			dispatch(filterCatalogItems(filter)),
-		onItemSelect: (item: any) => dispatch(selectItem(item)),
+			dispatch(filterCatalogItems(filter))
 	};
 };
 
