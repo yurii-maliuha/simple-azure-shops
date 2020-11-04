@@ -30,9 +30,10 @@ const StyledActionContainer = styled("div")({
 });
 
 interface Props {
-	commodity: Commodity;
-	match: any;
-	getProduct: (id: number) => void;
+    commodity: Commodity;
+    match: any;
+    getProduct: (id: number) => void;
+    onItemSelect: (item: any) => void;
 }
 
 export default class ProductDetails extends React.Component<Props> {
@@ -45,66 +46,69 @@ export default class ProductDetails extends React.Component<Props> {
 		console.log(this.props.commodity.name);
 	}
 
-	render() {
-		const { commodity } = this.props;
-		const images =
-			commodity?.images === undefined
-				? []
-				: (this.props.commodity.images as Array<any>).map((it) => {
-						return (
-							<div>
-								<img src={it} />
-							</div>
-						);
-				  });
-		const price = commodity.onSale ? (
-			<Typography variant="h5">
-				<s>{commodity.price}</s>
-				<Typography color="error">
-					{commodity.salePrice} {commodity.currency}
-				</Typography>
-			</Typography>
-		) : (
-			<Typography variant="h5">
-				{commodity.price} {commodity.currency}
-			</Typography>
-		);
+    addToCart = () => {
+        this.props.onItemSelect(this.props.commodity);
+        console.log(this.props.commodity);
+    }
 
-		return (
-			<Container>
-				<StyledBreadcrumbs aria-label="breadcrumb">
-					<Link color="inherit" href="/">
-						Home
-					</Link>
-					<Link
-						color="textPrimary"
-						href={"/catalog/" + commodity.id}
-						aria-current="page"
-					>
-						{commodity.name}
-					</Link>
-				</StyledBreadcrumbs>
-				<Container>
-					<Typography variant="h4">{commodity.name}</Typography>
-					<Grid container spacing={3}>
-						<Grid item xs={5}>
-							<Carousel showThumbs>{images}</Carousel>
-						</Grid>
-						<Grid item xs={6} direction="column" justify="space-between">
-							<StyledDescription>
-								<div>{commodity.description}</div>
-								<StyledActionContainer>
-									{price}
-									<Button color="primary" variant="contained">
-										Add to cart
-										<AddShoppingCartIcon style={{ marginLeft: "1rem" }} />
-									</Button>
-								</StyledActionContainer>
-							</StyledDescription>
-						</Grid>
-					</Grid>
-				</Container>
-			</Container>
-		);
-	}
+    render() {
+        const { commodity } = this.props;
+        const images = commodity?.images === undefined ? [] : (this.props.commodity.images as Array<any>)
+            .map(it => {
+                return (<div>
+                    <img src={it} />
+                </div>)
+            });
+        const price = commodity.onSale ? (
+            <Typography variant="h5">
+                <s>{commodity.price}</s>
+                <Typography color="error">
+                    {commodity.salePrice} {commodity.currency}
+                </Typography>
+            </Typography>) :
+            <Typography variant="h5">
+                {commodity.price} {commodity.currency}
+            </Typography>;
+
+        return (<Container>
+            <StyledBreadcrumbs aria-label="breadcrumb">
+                <Link color="inherit" href="/">
+                    Home
+                </Link>
+                <Link
+                    color="textPrimary"
+                    href={"/catalog/" + commodity.id}
+                    aria-current="page">
+                    {commodity.name}
+                </Link>
+            </StyledBreadcrumbs>
+            <Container>
+                <Typography variant="h4">
+                    {commodity.name}
+                </Typography>
+                <Grid container spacing={3}>
+                    <Grid item xs={5}>
+                        <Carousel showThumbs>
+                            {images}
+                        </Carousel>
+                    </Grid>
+                    <Grid item xs={6} direction="column" justify="space-between">
+                        <StyledDescription>
+                            <div>
+                                {commodity.description}
+                            </div>
+                            <StyledActionContainer>
+                                {price}
+                                <Button color="primary" variant="contained" onClick={this.addToCart}>
+                                    Add to cart
+                                    <AddShoppingCartIcon
+                                        style={{ marginLeft: '1rem' }} />
+                                </Button>
+                            </StyledActionContainer>
+                        </StyledDescription>
+                    </Grid>
+                </Grid>
+            </Container>
+        </Container>);
+    }
 }

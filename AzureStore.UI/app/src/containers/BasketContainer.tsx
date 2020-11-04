@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
-import Basket from "../components/Basket";
+import { submitOrderCreation } from "../actions/ordering";
+import {Basket} from "../components/Basket";
 
 const mapStateToProps = (state: any) => {
     return {
@@ -7,4 +8,10 @@ const mapStateToProps = (state: any) => {
     };
 }
 
-export default connect(mapStateToProps)(Basket);
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        submitOrder: (order: any) => dispatch(submitOrderCreation(order))
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Basket);

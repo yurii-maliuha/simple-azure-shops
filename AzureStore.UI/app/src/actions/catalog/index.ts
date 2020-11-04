@@ -19,11 +19,17 @@ export const getCatalogItemsSuccess = (payload: any) => {
     };
 }
 
-export const selectItemAction = (item: any) => {
+export const onItemSelected  = (item: any) => {
     return {
         type: SELECT_ITEM,
         selectedItem: item
     };
+}
+
+export const selectItem = (item: any) => {
+    return (dispatch: any) => {
+        dispatch(onItemSelected(item));
+    }
 }
 
 

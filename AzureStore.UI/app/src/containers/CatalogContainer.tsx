@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { filterCatalogItems, getCatalogItems, selectItemAction } from '../actions/catalog'
+import { filterCatalogItems, getCatalogItems } from '../actions/catalog'
 import Catalog from '../components/Catalog';
 import { SimpleSearchFilter } from '../models/SimpleSearchFilter';
 
