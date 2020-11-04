@@ -24,6 +24,7 @@ interface Props {
     commodity: Commodity;
     match: any;
     getProduct: (id: number) => void;
+    onItemSelect: (item: any) => void;
 }
 
 export default class ProductDetails extends React.Component<Props> {
@@ -35,6 +36,11 @@ export default class ProductDetails extends React.Component<Props> {
 
     componentDidUpdate() {
         console.log(this.props.commodity.name);
+    }
+
+    addToCart = () => {
+        this.props.onItemSelect(this.props.commodity);
+        console.log(this.props.commodity);
     }
 
     render() {
@@ -85,7 +91,7 @@ export default class ProductDetails extends React.Component<Props> {
                             </div>
                             <StyledActionContainer>
                                 {price}
-                                <Button color="primary" variant="contained">
+                                <Button color="primary" variant="contained" onClick={this.addToCart}>
                                     Add to cart
                                     <AddShoppingCartIcon
                                         style={{ marginLeft: '1rem' }} />
