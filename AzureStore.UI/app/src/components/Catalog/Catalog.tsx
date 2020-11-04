@@ -1,46 +1,39 @@
-import React from 'react';
-import { Container, Grid, styled } from '@material-ui/core';
-import { Pagination } from '@material-ui/lab';
-import HeaderFilter from '../HeaderFilter';
-import CatalogItem from '../Shared/CatalogItem';
-import { SimpleSearchFilter } from '../../models/SimpleSearchFilter';
-import SkeletonCatalogItem from '../Shared/SkeletonCatalogItem';
-import Commodity from '../../models/Commodity';
-import Page from '../../models/Page';
+import React from "react";
+import { Container, Grid, styled } from "@material-ui/core";
+import { Pagination } from "@material-ui/lab";
+import HeaderFilter from "../HeaderFilter";
+import CatalogItem from "../Shared/CatalogItem";
+import { SimpleSearchFilter } from "../../models/SimpleSearchFilter";
+import SkeletonCatalogItem from "../Shared/SkeletonCatalogItem";
+import Commodity from "../../models/Commodity";
+import Page from "../../models/Page";
 
-const PaginationContainer = styled('div')({
-    margin: '2rem 0',
-    display: 'flex',
-    justifyContent: 'center'
+const PaginationContainer = styled("div")({
+	margin: "2rem 0",
+	display: "flex",
+	justifyContent: "center",
 });
 
 interface Props {
-    getCatalog: (page: number) => void;
-    filterCatalog: (price: SimpleSearchFilter) => void;
-    catalogItems: Page<Commodity>;
-    catalogLoading: boolean;
-    onItemSelect: (item: any) => void;
+	getCatalog: (page: number) => void;
+	filterCatalog: (price: SimpleSearchFilter) => void;
+	catalogItems: Page<Commodity>;
+	catalogLoading: boolean;
+	onItemSelect: (item: any) => void;
 }
 
 export default class Catalog extends React.Component<Props> {
+	state = {
+		maxPrice: 0,
+		page: 1,
+	};
+	itemSelected = false;
 
-    state = {
-        maxPrice: 0,
-        page: 1
-    };
-    itemSelected = false;
+	componentDidMount() {
+		this.props.getCatalog(this.state.page);
+	}
 
-    componentDidMount() {
-        this.props.getCatalog(this.state.page);
-    }
-
-    componentDidUpdate() {
-        if (this.props.catalogItems?.data && !this.itemSelected) {
-            this.props.onItemSelect(this.props.catalogItems.data[0]);
-            this.props.onItemSelect(this.props.catalogItems.data[1]);
-            this.itemSelected = true;
-        }
-
+	componentDidUpdate() {
 		const items = this.props.catalogItems.data;
 		if (items?.length > 0 && this.state.maxPrice === 0) {
 			const max = Math.max.apply(
