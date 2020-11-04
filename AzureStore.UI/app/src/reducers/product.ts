@@ -22,7 +22,7 @@ export function product(state: any = initialState, action: any) {
             }
         };
         default: {
-            return initialState;
+            return state;
         }
     }
 }

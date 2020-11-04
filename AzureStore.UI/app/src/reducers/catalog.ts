@@ -1,5 +1,4 @@
 import { GET_CATALOG_REQUEST, GET_CATALOG_SUCCESS, SELECT_ITEM } from '../actions/catalog';
-import { GET_CATEGORIES_REQUEST, GET_CATEGORIES_SUCCESS } from '../actions/categories';
 
 const initialState = {
     catalogLoading: false,
@@ -26,10 +25,22 @@ export function catalog(state: any = initialState, action: any) {
             }
         };
         case SELECT_ITEM: {
+            const index = state.selectedItems.findIndex((x: any) => x.product.id === action.selectedItem.id);
+            let items = [];
+            if(index >= 0) {
+                items = [...state.selectedItems];
+                items.splice(index, 1, {
+                    product: state.selectedItems[index].product,
+                    quantity: state.selectedItems[index].quantity + 1
+                });
+            } else {
+                items = [...state.selectedItems, {product: action.selectedItem, quantity: 1}];
+            }
+
             return {
                 ...state,
-                selectedItems: [...state.selectedItems, action.selectedItem]
-            }
+                selectedItems: items
+            };
         };
         default: {
             return state;

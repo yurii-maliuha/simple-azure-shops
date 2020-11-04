@@ -19,7 +19,6 @@ interface Props {
 	filterCatalog: (price: SimpleSearchFilter) => void;
 	catalogItems: Page<Commodity>;
 	catalogLoading: boolean;
-	onItemSelect: (item: any) => void;
 }
 
 export default class Catalog extends React.Component<Props> {
@@ -35,14 +34,6 @@ export default class Catalog extends React.Component<Props> {
 
 	componentDidUpdate() {
 		if (this.props.catalogItems.data[0] && !this.itemSelected) {
-			this.props.onItemSelect({
-				item: this.props.catalogItems.data[0],
-				quantity: 1,
-			});
-			this.props.onItemSelect({
-				item: this.props.catalogItems.data[1],
-				quantity: 1,
-			});
 			this.itemSelected = true;
 		}
 
