@@ -1,8 +1,7 @@
 import { connect } from "react-redux";
 import {
 	filterCatalogItems,
-	getCatalogItems,
-	selectItem,
+	getCatalogItems
 } from "../actions/catalog";
 import Catalog from "../components/Catalog";
 import { SimpleSearchFilter } from "../models/SimpleSearchFilter";
@@ -10,7 +9,8 @@ import { SimpleSearchFilter } from "../models/SimpleSearchFilter";
 const mapStateToProps = (state: any) => {
 	return {
 		catalogItems: state.catalog.catalogItems,
-		catalogLoading: state.catalog.catalogLoading,
+        catalogLoading: state.catalog.catalogLoading,
+        category: state.categories.current
 	};
 };
 

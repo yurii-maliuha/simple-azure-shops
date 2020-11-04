@@ -1,4 +1,5 @@
 export type SimpleSearchFilter = {
-    from: number;
-    to: number;
-}
+	from: number;
+	to: number;
+	category?: number;
+};

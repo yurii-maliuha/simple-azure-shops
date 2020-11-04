@@ -19,6 +19,7 @@ interface Props {
 	filterCatalog: (price: SimpleSearchFilter) => void;
 	catalogItems: Page<Commodity>;
 	catalogLoading: boolean;
+	category?: number;
 }
 
 export default class Catalog extends React.Component<Props> {

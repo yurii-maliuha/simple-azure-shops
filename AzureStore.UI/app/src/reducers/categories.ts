@@ -1,7 +1,8 @@
-import { GET_CATEGORIES_SUCCESS } from '../actions/categories';
+import { GET_CATEGORIES_SUCCESS, SELECT_CATEGORY } from '../actions/categories';
 
 const initialState = {
-    categories: []
+    categories: [],
+    current: undefined
 };
 
 export function categories(state: any = initialState, action: any) {
@@ -10,6 +11,12 @@ export function categories(state: any = initialState, action: any) {
             return {
                 ...state,
                 categories: action.payload
+            }
+        };
+        case SELECT_CATEGORY: {
+            return {
+                ...state,
+                current: action.payload
             }
         };
         default: {
