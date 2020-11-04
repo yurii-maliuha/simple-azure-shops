@@ -33,10 +33,6 @@ export default class Catalog extends React.Component<Props> {
 	}
 
 	componentDidUpdate() {
-		if (this.props.catalogItems.data[0] && !this.itemSelected) {
-			this.itemSelected = true;
-		}
-
 		const items = this.props.catalogItems.data;
 		if (items?.length > 0 && this.state.maxPrice === 0) {
 			const max = Math.max.apply(
