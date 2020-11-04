@@ -2,6 +2,6 @@ import { combineReducers } from "redux";
 import { catalog } from "./catalog";
 import { categories } from './categories';
 import { product } from './product';
-import { ordering } from './ordering';
+import { orders } from './orders';
 
-export default combineReducers({ catalog, categories, product, ordering });
+export default combineReducers({ catalog, categories, product, orders });

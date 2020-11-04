@@ -16,20 +16,28 @@ import BasketBadge from './containers/BasketBadgeConteiner';
 
 const StyledLink = styled(Link)({
   textDecoration: 'none',
-  color: 'white'
+  color: 'white',
+  margin: "0 10px"
+});
+
+const StyledAppBar = styled(AppBar)({
+  padding:"15px",
+  display:"flex",
+  justifyContent: "flex-end",
+  flexDirection: "row"
 });
 
 function App() {
   return (
     <Router>
-      <AppBar position="static" style={{padding:"15px", display:"flex", justifyContent: "flex-end", flexDirection: "row"}}>
-        <StyledLink to="/basket" style={{margin:"0 10px"}}>
+      <StyledAppBar position="static">
+        <StyledLink to="/basket">
           <BasketBadge />
         </StyledLink>
-        <StyledLink to="/" style={{margin:"0 10px"}}>
+        <StyledLink to="/">
           <HomeIcon/>
         </StyledLink>
-      </AppBar>
+      </StyledAppBar>
       <Switch>
         <Route exact path="/">
           <Home />

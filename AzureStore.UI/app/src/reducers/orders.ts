@@ -4,7 +4,7 @@ const initialState = {
     selectedItems: []
 };
 
-export function ordering(state: any = initialState, action: any) {
+export function orders(state: any = initialState, action: any) {
     switch (action?.type) {
         case ORDER_CREATION_SUBMIT_REQUEST: {
             return {

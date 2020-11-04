@@ -3,7 +3,7 @@ import {BasketBadge} from "../components/Basket";
 
 const mapStateToProps = (state: any) => {
     return {
-        selectedItems: state.catalog.selectedItems
+        selectedItemsCount: state.catalog.selectedItems.length
     };
 }
 

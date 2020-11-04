@@ -1,8 +1,5 @@
-import { stat } from 'fs';
 import { GET_CATALOG_REQUEST, GET_CATALOG_SUCCESS, SELECT_ITEM } from '../actions/catalog';
-import { GET_CATEGORIES_REQUEST, GET_CATEGORIES_SUCCESS } from '../actions/categories';
 
-const item = {prodcut: {id: 0, amount:0, name: ""}, quantity: 0};
 const initialState = {
     catalogLoading: false,
     catalogItems: {
