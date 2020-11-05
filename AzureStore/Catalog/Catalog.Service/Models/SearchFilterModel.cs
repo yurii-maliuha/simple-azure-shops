@@ -6,7 +6,9 @@ namespace Catalog.Service.Models
 {
     public class SearchFilterModel
     {
-        public IEnumerable<int> CommodityTypes { get; set; }
+        public int? CommodityType { get; set; }
+        public int Page { get; set; } = 1;
+        public int PerPage { get; set; } = 10;
         public decimal? From { get; set; }
         public decimal? To { get; set; }
     }

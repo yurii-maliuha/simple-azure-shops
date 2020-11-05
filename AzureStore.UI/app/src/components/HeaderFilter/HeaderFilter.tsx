@@ -4,62 +4,68 @@ import "./HeaderFilter.scss";
 import { SimpleSearchFilter } from "../../models/SimpleSearchFilter";
 
 interface State {
-	filter: SimpleSearchFilter;
+	range: { from: number; to: number };
 }
 
 interface Props {
 	maxPrice: number;
-	filterProducts: (filter: SimpleSearchFilter) => void;
+	filterChanged: (filter: { from: number; to: number }) => void;
 }
 
 export default class HeaderFilter extends React.Component<Props, State> {
 	state = {
-		filter: {
+		range: {
 			from: 0,
-			to: 99999,
-		} as SimpleSearchFilter,
+			to: 0,
+		},
+		default: 0,
 	};
 
 	handleSliderCommitChange = (event: any, newValue: number | number[]) => {
-		this.props.filterProducts(this.state.filter);
+		this.props.filterChanged(this.state.range);
 	};
 
 	handleSliderChange = (event: any, newValue: number | number[]) => {
 		const values = newValue as number[];
-		const filter = {
-			...this.state.filter,
+		const range = {
 			from: values[0],
 			to: values[1],
 		};
 		this.setState({
-			filter,
+			range,
 		});
 	};
 
 	handleTextFromChange = (event: any) => {
 		const value = event.target.value;
-		const filter = {
-			...this.state.filter,
+		const range = {
+			...this.state.range,
 			from: !value ? 0 : Number.parseInt(event.target.value),
 		};
 		this.setState({
-			filter,
+			range,
 		});
 	};
 
 	handleTextToChange = (event: any) => {
 		const value = event.target.value;
-		const filter = {
-			...this.state.filter,
+		const range = {
+			...this.state.range,
 			to: !value ? this.props.maxPrice : Number.parseInt(event.target.value),
 		};
 		this.setState({
 			...this.state,
-			filter,
+			range,
 		});
 	};
 
 	render() {
+		const { range } = this.state;
+		const valueFrom = range.from;
+		const valueTo =
+			range.to === this.state.default ? this.props.maxPrice : range.to;
+		const value = [valueFrom, valueTo];
+
 		return (
 			<div className="app-simple-filter">
 				<Grid container spacing={2}>
@@ -69,7 +75,7 @@ export default class HeaderFilter extends React.Component<Props, State> {
 							max={this.props.maxPrice}
 							onChange={this.handleSliderChange}
 							onChangeCommitted={this.handleSliderCommitChange}
-							value={[this.state.filter.from, this.state.filter.to]}
+							value={value}
 							aria-labelledby="range-slider"
 						/>
 					</Grid>
@@ -79,7 +85,7 @@ export default class HeaderFilter extends React.Component<Props, State> {
 							label="Min price"
 							variant="outlined"
 							onChange={this.handleTextFromChange}
-							value={this.state.filter.from}
+							value={valueFrom}
 						/>
 					</Grid>
 					<Grid item xs={2}>
@@ -88,7 +94,7 @@ export default class HeaderFilter extends React.Component<Props, State> {
 							label="Max price"
 							variant="outlined"
 							onChange={this.handleTextToChange}
-							value={this.state.filter.to}
+							value={valueTo}
 						/>
 					</Grid>
 				</Grid>

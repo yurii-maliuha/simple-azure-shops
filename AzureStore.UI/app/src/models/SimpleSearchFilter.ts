@@ -1,5 +1,6 @@
 export type SimpleSearchFilter = {
 	from: number;
 	to: number;
-	category?: number;
+	commodityType?: number;
+	page: number;
 };
