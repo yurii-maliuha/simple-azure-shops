@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { getCategoriesAction } from '../actions/categories'
+import { getCategoriesAction, selectCategory } from '../actions/categories'
 import Sidebar from '../components/Sidebar';
 
 const mapStateToProps = (state: any) => {
@@ -10,7 +10,8 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        getCategories: () => dispatch(getCategoriesAction())
+        getCategories: () => dispatch(getCategoriesAction()),
+        selectCategory: (categoryId: number) => dispatch(selectCategory(categoryId))
     };
 }
 

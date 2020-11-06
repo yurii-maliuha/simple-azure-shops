@@ -19,20 +19,26 @@ interface Props {
 	filterCatalog: (price: SimpleSearchFilter) => void;
 	catalogItems: Page<Commodity>;
 	catalogLoading: boolean;
+	category?: number; // TODO: check if we need it somewhere else
+	match: any;
 }
 
 export default class Catalog extends React.Component<Props> {
 	state = {
 		maxPrice: 0,
 		page: 1,
+		range: {
+			to: 99999,
+			from: 0,
+		},
 	};
 	itemSelected = false;
 
 	componentDidMount() {
-		this.props.getCatalog(this.state.page);
+		this.props.filterCatalog(this.getFilter());
 	}
 
-	componentDidUpdate() {
+	componentDidUpdate(prevProps: Props, prevState: any) {
 		const items = this.props.catalogItems.data;
 		if (items?.length > 0 && this.state.maxPrice === 0) {
 			const max = Math.max.apply(
@@ -41,7 +47,24 @@ export default class Catalog extends React.Component<Props> {
 			);
 			this.setState({ maxPrice: max });
 		}
+
+		if (
+			prevProps.category !== this.props.category ||
+			prevState.range !== this.state.range ||
+			prevState.page !== this.state.page
+		) {
+			this.props.filterCatalog(this.getFilter());
+		}
 	}
+
+	getFilter = () => {
+		return {
+			to: this.state.range.to,
+			from: this.state.range.from,
+			commodityType: this.props.category,
+			page: this.state.page,
+		} as SimpleSearchFilter;
+	};
 
 	mapGrid = () => {
 		const data = this.props.catalogLoading
@@ -68,13 +91,19 @@ export default class Catalog extends React.Component<Props> {
 		this.props.getCatalog(value);
 	};
 
+	handlePriceRangeChanged = (range: { from: number; to: number }) => {
+		this.setState({
+			range,
+		});
+	};
+
 	render() {
 		const data = this.mapGrid();
 		return (
 			<Container>
 				<HeaderFilter
 					maxPrice={this.state.maxPrice}
-					filterProducts={this.props.filterCatalog}
+					filterChanged={this.handlePriceRangeChanged}
 				></HeaderFilter>
 				<Grid
 					container
