@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Payments.Persistence;
+using Payments.Persistence.Repositories;
 
 namespace Payments.API
 {
@@ -30,6 +33,15 @@ namespace Payments.API
                         .AllowAnyHeader();
                 }));
             }
+
+            services.AddDbContext<ApplicationDbContext>(c =>
+            {
+                var connectionString = _configuration.GetConnectionString(_hostingEnvironment.EnvironmentName);
+                c.UseSqlServer(connectionString);
+            });
+
+            services.AddTransient<IPaymentsRepository, PaymentsRepository>();
+
             services.AddSwaggerGen(c =>
             {
                 c.DescribeAllParametersInCamelCase();

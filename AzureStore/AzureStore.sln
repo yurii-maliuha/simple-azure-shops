@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
@@ -39,11 +39,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordering.Persistent", "Orde
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Payments.API", "Payments\Payments.API\Payments.API.csproj", "{CA0A99A7-500F-449F-9BC2-EFB335AC92A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payments.Domain", "Payments.Domain\Payments.Domain.csproj", "{4D70342A-AD83-469B-87C6-7957044BEB65}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payments.Domain", "Payments\Payments.Domain\Payments.Domain.csproj", "{4D70342A-AD83-469B-87C6-7957044BEB65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payments.Persistence", "Payments.Persistence\Payments.Persistence.csproj", "{EA7E8313-5751-42F0-B098-9E4702A260F1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payments.Persistence", "Payments\Payments.Persistence\Payments.Persistence.csproj", "{EA7E8313-5751-42F0-B098-9E4702A260F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payments.Services", "Payments.Services\Payments.Services.csproj", "{F5E3E2FE-D067-40EF-A5F0-1608116DCA26}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payments.Services", "Payments\Payments.Services\Payments.Services.csproj", "{F5E3E2FE-D067-40EF-A5F0-1608116DCA26}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
