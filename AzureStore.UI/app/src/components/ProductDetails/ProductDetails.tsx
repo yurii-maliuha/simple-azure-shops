@@ -1,40 +1,54 @@
-import { Breadcrumbs, Button, Container, Grid, Link, styled, Typography } from '@material-ui/core';
-import React from 'react';
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import { Carousel } from 'react-responsive-carousel';
-import Commodity from '../../models/Commodity';
+import {
+	Breadcrumbs,
+	Button,
+	Container,
+	Grid,
+	Link,
+	styled,
+	Typography,
+} from "@material-ui/core";
+import React from "react";
+import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
+import { Carousel } from "react-responsive-carousel";
+import Commodity from "../../models/Commodity";
+import PayPal from "../Payments/PayPalForm";
 
 const StyledBreadcrumbs = styled(Breadcrumbs)({
-    marginBottom: '4rem'
+	marginBottom: "4rem",
 });
 
-const StyledDescription = styled('div')({
-    height: '80%',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between'
+const StyledDescription = styled("div")({
+	height: "80%",
+	display: "flex",
+	flexDirection: "column",
+	justifyContent: "space-between",
 });
 
-const StyledActionContainer = styled('div')({
-    display: 'flex',
-    justifyContent: 'space-between'
+const StyledActionContainer = styled("div")({
+	display: "flex",
+	justifyContent: "space-between",
 });
 
 interface Props {
     commodity: Commodity;
     match: any;
     getProduct: (id: number) => void;
+    onItemSelect: (item: any) => void;
 }
 
 export default class ProductDetails extends React.Component<Props> {
+	componentDidMount() {
+		const { id } = this.props.match.params;
+		this.props.getProduct(id);
+	}
 
-    componentDidMount() {
-        const { id } = this.props.match.params;
-        this.props.getProduct(id);
-    }
+	componentDidUpdate() {
+		console.log(this.props.commodity.name);
+	}
 
-    componentDidUpdate() {
-        console.log(this.props.commodity.name);
+    addToCart = () => {
+        this.props.onItemSelect(this.props.commodity);
+        console.log(this.props.commodity);
     }
 
     render() {
@@ -85,7 +99,7 @@ export default class ProductDetails extends React.Component<Props> {
                             </div>
                             <StyledActionContainer>
                                 {price}
-                                <Button color="primary" variant="contained">
+                                <Button color="primary" variant="contained" onClick={this.addToCart}>
                                     Add to cart
                                     <AddShoppingCartIcon
                                         style={{ marginLeft: '1rem' }} />

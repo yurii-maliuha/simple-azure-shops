@@ -1,21 +1,26 @@
-import { connect } from 'react-redux';
-import { filterCatalogItems, getCatalogItems, selectItemAction } from '../actions/catalog'
-import Catalog from '../components/Catalog';
-import { SimpleSearchFilter } from '../models/SimpleSearchFilter';
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { filterCatalogItems, getCatalogItems } from "../actions/catalog";
+import Catalog from "../components/Catalog";
+import { SimpleSearchFilter } from "../models/SimpleSearchFilter";
 
-const mapStateToProps = (state: any) => {
-    return {
-        catalogItems: state.catalog.catalogItems,
-        catalogLoading: state.catalog.catalogLoading
-    };
-}
+const mapStateToProps = (state: any, ownProps: any) => {
+	return {
+		catalogItems: state.catalog.catalogItems,
+		catalogLoading: state.catalog.catalogLoading,
+		category: state.categories.current,
+	};
+};
 
 const mapDispatchToProps = (dispatch: any) => {
-    return {
-        getCatalog: (page: number) => dispatch(getCatalogItems(page)),
-        filterCatalog: (filter: SimpleSearchFilter) => dispatch(filterCatalogItems(filter)),
-        onItemSelect: (item:any) => dispatch(selectItemAction(item))
-    };
-}
+	return {
+		getCatalog: (page: number) => dispatch(getCatalogItems(page)),
+		filterCatalog: (filter: SimpleSearchFilter) =>
+			dispatch(filterCatalogItems(filter)),
+	};
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Catalog);
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(withRouter<any, any>(Catalog));
