@@ -3,7 +3,6 @@ import {
 	Button,
 	Container,
 	Grid,
-	Link,
 	styled,
 	Typography,
 } from "@material-ui/core";
@@ -12,11 +11,9 @@ import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import { Carousel } from "react-responsive-carousel";
 import Commodity from "../../models/Commodity";
 import PayPal from "../Payments/PayPalForm";
-import StyledLink from "../Shared/StyledLink";
+import { StyledLink } from "../Shared/LinkWrapper";
+import { StyledBreadcrumbs } from "../Shared/BreadcrumbWrapper";
 
-const StyledBreadcrumbs = styled(Breadcrumbs)({
-	marginBottom: "4rem",
-});
 
 const StyledDescription = styled("div")({
 	height: "80%",
@@ -71,17 +68,14 @@ export default class ProductDetails extends React.Component<Props> {
                 {commodity.price} {commodity.currency}
             </Typography>;
 
-        return (<Container>
+        return (<Container style={{padding: "40px 20px"}}>
             <StyledBreadcrumbs aria-label="breadcrumb">
                 <StyledLink color="inherit" to="/">
                     Home
                 </StyledLink>
-                <StyledLink
-                    color="textPrimary"
-                    to={"/catalog/" + commodity.id}
-                    aria-current="page">
+                <span style={{color: "gray"}}>
                     {commodity.name}
-                </StyledLink>
+                </span>
             </StyledBreadcrumbs>
             <Container>
                 <Typography variant="h4">

@@ -9,7 +9,7 @@ import { Container, Grid } from '@material-ui/core';
 export default class Home extends React.Component {
     render() {
         return (
-          <Container>
+          <Container style={{padding: "40px 20px"}}>
             <Grid container>
               <Grid item xs={2}>
                 <Sidebar />
