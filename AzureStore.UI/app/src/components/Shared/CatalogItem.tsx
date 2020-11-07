@@ -3,10 +3,7 @@ import { Card, CardContent, Typography, styled } from "@material-ui/core";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.css";
 import { Link } from "react-router-dom";
-
-const StyledLink = styled(Link)({
-	textDecoration: "none",
-});
+import { StyledLink } from "./StyledLink";
 
 interface Props {
 	item: any;

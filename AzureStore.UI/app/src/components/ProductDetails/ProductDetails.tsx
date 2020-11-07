@@ -12,6 +12,7 @@ import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import { Carousel } from "react-responsive-carousel";
 import Commodity from "../../models/Commodity";
 import PayPal from "../Payments/PayPalForm";
+import StyledLink from "../Shared/StyledLink";
 
 const StyledBreadcrumbs = styled(Breadcrumbs)({
 	marginBottom: "4rem",
@@ -72,15 +73,15 @@ export default class ProductDetails extends React.Component<Props> {
 
         return (<Container>
             <StyledBreadcrumbs aria-label="breadcrumb">
-                <Link color="inherit" href="/">
+                <StyledLink color="inherit" to="/">
                     Home
-                </Link>
-                <Link
+                </StyledLink>
+                <StyledLink
                     color="textPrimary"
-                    href={"/catalog/" + commodity.id}
+                    to={"/catalog/" + commodity.id}
                     aria-current="page">
                     {commodity.name}
-                </Link>
+                </StyledLink>
             </StyledBreadcrumbs>
             <Container>
                 <Typography variant="h4">

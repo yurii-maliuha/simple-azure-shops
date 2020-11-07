@@ -13,9 +13,9 @@ import Home from './components/Home';
 import HomeIcon from '@material-ui/icons/Home';
 import AppBar from '@material-ui/core/AppBar/AppBar';
 import BasketBadge from './containers/BasketBadgeConteiner';
+import StyledLink from './components/Shared/StyledLink';
 
-const StyledLink = styled(Link)({
-  textDecoration: 'none',
+const AppStyledLink = styled(StyledLink)({
   color: 'white',
   margin: "0 10px"
 });
@@ -31,12 +31,12 @@ function App() {
   return (
     <Router>
       <StyledAppBar position="static">
-        <StyledLink to="/basket">
+        <AppStyledLink to="/basket">
           <BasketBadge />
-        </StyledLink>
-        <StyledLink to="/">
+        </AppStyledLink>
+        <AppStyledLink to="/">
           <HomeIcon/>
-        </StyledLink>
+        </AppStyledLink>
       </StyledAppBar>
       <Switch>
         <Route exact path="/">
