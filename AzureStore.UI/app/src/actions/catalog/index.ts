@@ -1,3 +1,4 @@
+import Commodity from '../../models/Commodity';
 import { SimpleSearchFilter } from '../../models/SimpleSearchFilter';
 import ApiService from '../../services/apiService';
 
@@ -5,6 +6,8 @@ export const GET_CATALOG_REQUEST = "GET_CATALOG_REQUEST";
 export const GET_CATALOG_SUCCESS = "GET_CATALOG_SUCCESS";
 export const GET_CATALOG_ERROR = "GET_CATALOG_ERROR";
 export const SELECT_ITEM = "SELECT_ITEM";
+export const UNSELECT_ITEM = "UNSELECT_ITEM";
+export const UPDATE_SELECTED_ITEM = "UPDATE_SELECTED_ITEM";
 
 export const getCatalogItemsRequest = () => {
     return {
@@ -19,16 +22,29 @@ export const getCatalogItemsSuccess = (payload: any) => {
     };
 }
 
-export const onItemSelected  = (item: any) => {
+export const onItemSelected  = (item: Commodity) => {
     return {
         type: SELECT_ITEM,
-        selectedItem: item
+        payload: item
     };
 }
 
-export const selectItem = (item: any) => {
+export const onItemUnselected = (item: Commodity) => {
+    return {
+        type: UNSELECT_ITEM,
+        payload: item
+    }
+}
+
+export const selectItem = (item: Commodity) => {
     return (dispatch: any) => {
         dispatch(onItemSelected(item));
+    }
+}
+
+export const unselectItem = (item: Commodity) => {
+    return (dispatch: any) => {
+        dispatch(onItemUnselected(item));
     }
 }
 
