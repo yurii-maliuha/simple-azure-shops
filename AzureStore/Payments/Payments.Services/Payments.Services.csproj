@@ -13,4 +13,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Payments.Domain\Payments.Domain.csproj" />
+    <ProjectReference Include="..\Payments.Persistence\Payments.Persistence.csproj" />
+  </ItemGroup>
+
 </Project>
