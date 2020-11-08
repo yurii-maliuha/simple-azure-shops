@@ -19,7 +19,8 @@ namespace Catalog.Persistence.Configurations
 
             builder.HasOne(x => x.Commodity)
                 .WithMany(x => x.Images)
-                .HasForeignKey(x => x.CommodityId);
+                .HasForeignKey(x => x.CommodityId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

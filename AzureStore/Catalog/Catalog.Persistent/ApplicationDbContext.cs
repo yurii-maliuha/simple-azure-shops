@@ -21,7 +21,8 @@ namespace Catalog.Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
-            modelBuilder.Seed();
+
+            // modelBuilder.Seed();
             base.OnModelCreating(modelBuilder);
         }
 

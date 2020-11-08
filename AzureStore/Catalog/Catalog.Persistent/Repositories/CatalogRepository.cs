@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Catalog.Domain;
 using Microsoft.EntityFrameworkCore;
@@ -14,7 +15,7 @@ namespace Catalog.Persistence.Repositories
             _context = context;
         }
 
-        public IQueryable<Commodity> GetAllCommodities()
+        public IQueryable<Commodity> Products()
         {
             return _context.Commodities.AsQueryable();
         }
@@ -24,11 +25,30 @@ namespace Catalog.Persistence.Repositories
             return _context.CommodityTypes.AsQueryable();
         }
 
-        public Commodity GetCommodity(int id)
+        public async Task<Commodity> GetProductById(int id)
         {
-            return _context.Commodities
+            return await _context.Commodities
                 .Include(x => x.Images)
-                .FirstOrDefault(x => x.Id == id);
+                .FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public void DeleteById(int id)
+        {
+            var product = _context.Commodities.First(x => x.Id == id);
+            _context.Commodities.Remove(product);
+        }
+
+        public int AddProduct(Commodity commodity)
+        {
+            _context.Add(commodity);
+            _context.SaveChanges();
+
+            return commodity.Id;
+        }
+
+        public async Task<int> SaveChangesAsync()
+        {
+            return await _context.SaveChangesAsync();
         }
     }
 }
