@@ -16,6 +16,7 @@ import OrderItem from '../../models/OrderItem';
 import Commodity from '../../models/Commodity';
 import { StyledBreadcrumbs } from '../Shared/BreadcrumbWrapper';
 import { StyledLink } from '../Shared/LinkWrapper';
+import Utils from '../../services/utilsService';
 
 interface Props {
     selectedItems: OrderItem[];
@@ -62,8 +63,7 @@ export default class Basket extends React.Component<Props> {
     }
 
     componentDidUpdate(prevProps: Props, prevState: Props) {
-      if (JSON.stringify(prevProps.selectedItems) 
-          !== JSON.stringify(this.props.selectedItems)) {
+      if (!Utils.equals(prevProps.selectedItems, this.props.selectedItems)  ) {
         this.setState({
           orderItems: this.props.selectedItems,
           total: this.getTotal([...this.props.selectedItems])
