@@ -1,4 +1,6 @@
-import { GET_CATALOG_REQUEST, GET_CATALOG_SUCCESS, SELECT_ITEM } from '../actions/catalog';
+import { GET_CATALOG_REQUEST, GET_CATALOG_SUCCESS, SELECT_ITEM, UNSELECT_ITEM, DELETE_ITEM } from '../actions/catalog';
+import OrderItem from '../models/OrderItem';
+import Action from '../models/Action';
 
 const initialState = {
     catalogLoading: false,
@@ -6,10 +8,11 @@ const initialState = {
         data: [],
         totalPages: 1
     },
-    selectedItems: []
+    selectedItems: new Map<number, OrderItem>()
 };
 
-export function catalog(state: any = initialState, action: any) {
+
+export function catalog(state: any = initialState, action: Action) {
     switch (action?.type) {
         case GET_CATALOG_REQUEST: {
             return {
@@ -25,23 +28,54 @@ export function catalog(state: any = initialState, action: any) {
             }
         };
         case SELECT_ITEM: {
-            const index = state.selectedItems.findIndex((x: any) => x.product.id === action.selectedItem.id);
-            let items = [];
-            if(index >= 0) {
-                items = [...state.selectedItems];
-                items.splice(index, 1, {
-                    product: state.selectedItems[index].product,
-                    quantity: state.selectedItems[index].quantity + 1
-                });
+            const productId = action.payload.id;
+            let itemsMap = new Map<number, OrderItem>(state.selectedItems);
+            const item = itemsMap.get(productId);
+            if(item) {
+                itemsMap.set(productId, {product: item.product, quantity: item.quantity + 1});
             } else {
-                items = [...state.selectedItems, {product: action.selectedItem, quantity: 1}];
+                itemsMap.set(
+                    productId, 
+                    {
+                        product: action.payload, 
+                        quantity: 1
+                    }
+                );
             }
 
             return {
                 ...state,
-                selectedItems: items
+                selectedItems: itemsMap
             };
         };
+        case UNSELECT_ITEM: {
+            const productId = action.payload.id;
+            let itemsMap = new Map<number, OrderItem>(state.selectedItems);
+            const item = itemsMap.get(productId);
+            if(item && item.quantity > 1) {
+                itemsMap.set(productId, {product: item.product, quantity: item.quantity - 1});
+            } else if (item) {
+                itemsMap.delete(productId);
+            }
+
+            return {
+                ...state,
+                selectedItems: itemsMap
+            };
+        };
+        case DELETE_ITEM: {
+            const productId = action.payload;
+            let itemsMap = new Map<number, OrderItem>(state.selectedItems);
+            if(itemsMap.has(productId)) {
+                itemsMap.delete(productId);
+            }
+
+            return {
+                ...state,
+                selectedItems: itemsMap
+            };
+        }
+
         default: {
             return state;
         }

@@ -3,6 +3,7 @@ import { withRouter } from "react-router";
 import { selectItem } from '../actions/catalog';
 import { getProduct } from "../actions/product";
 import ProductDetails from "../components/ProductDetails";
+import Commodity from '../models/Commodity';
 
 const mapStateToProps = (state: any, ownProps: any) => {
     return {
@@ -14,7 +15,7 @@ const mapStateToProps = (state: any, ownProps: any) => {
 const mapDispatchToProps = (dispatch: any) => {
     return {
         getProduct: (id: number) => dispatch(getProduct(id)),
-        onItemSelect: (item:any) => dispatch(selectItem(item))
+        onItemSelect: (item: Commodity) => dispatch(selectItem(item))
     };
 }
 
