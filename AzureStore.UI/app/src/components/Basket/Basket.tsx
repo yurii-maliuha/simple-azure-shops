@@ -23,6 +23,7 @@ interface Props {
     submitOrder: (order: any) => void;
     onItemSelect: (item: Commodity) => void;
     onItemUnselect: (item: Commodity) => void;
+    onItemDelete: (id: number) => void;
 }
 
 const StyledTableCell = withStyles((theme: Theme) =>
@@ -58,7 +59,7 @@ export default class Basket extends React.Component<Props> {
     componentDidMount() {
       this.setState({
         orderItems: this.props.selectedItems,
-        total: this.getTotal([...this.props.selectedItems])
+        total: this.getTotal()
       });     
     }
 
@@ -66,7 +67,7 @@ export default class Basket extends React.Component<Props> {
       if (!Utils.equals(prevProps.selectedItems, this.props.selectedItems)  ) {
         this.setState({
           orderItems: this.props.selectedItems,
-          total: this.getTotal([...this.props.selectedItems])
+          total: this.getTotal()
         });  
       }
     }
@@ -77,9 +78,7 @@ export default class Basket extends React.Component<Props> {
         return;
       }
 
-      for(let i = 0; i < item.quantity; ++i) {
-          this.props.onItemUnselect(item.product);
-      }
+      this.props.onItemDelete(item.product.id);
     }
 
     handleQuantityChange = (productId: number, event: any) => {
@@ -106,9 +105,16 @@ export default class Basket extends React.Component<Props> {
       this.props.submitOrder(order);
     }
 
-    getTotal(items: OrderItem[]): number {
-      let total = 0;
-      items.forEach((item: any) => total+=item.product.price*item.quantity);
+    getTotal(): number {
+      const {selectedItems} = this.props;
+      if(!selectedItems || selectedItems.length === 0) {
+        return 0;
+      }
+
+      const total = selectedItems
+        .map(x => x.quantity * x.product.price)
+        .reduce((sum, val) => sum + val);
+
       return total;
     }
 
@@ -116,7 +122,7 @@ export default class Basket extends React.Component<Props> {
       return (
         <Container style={{padding: "40px 20px"}}>
           <StyledBreadcrumbs aria-label="breadcrumb">
-                <StyledLink color="inherit" to="/">
+                <StyledLink to="/">
                     Home
                 </StyledLink>
                 <span style={{color: "gray"}}>

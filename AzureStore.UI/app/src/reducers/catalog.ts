@@ -1,4 +1,4 @@
-import { GET_CATALOG_REQUEST, GET_CATALOG_SUCCESS, SELECT_ITEM, UPDATE_SELECTED_ITEM, UNSELECT_ITEM } from '../actions/catalog';
+import { GET_CATALOG_REQUEST, GET_CATALOG_SUCCESS, SELECT_ITEM, UNSELECT_ITEM, DELETE_ITEM } from '../actions/catalog';
 import OrderItem from '../models/OrderItem';
 import Action from '../models/Action';
 
@@ -63,6 +63,19 @@ export function catalog(state: any = initialState, action: Action) {
                 selectedItems: itemsMap
             };
         };
+        case DELETE_ITEM: {
+            const productId = action.payload;
+            let itemsMap = new Map<number, OrderItem>(state.selectedItems);
+            if(itemsMap.has(productId)) {
+                itemsMap.delete(productId);
+            }
+
+            return {
+                ...state,
+                selectedItems: itemsMap
+            };
+        }
+
         default: {
             return state;
         }
