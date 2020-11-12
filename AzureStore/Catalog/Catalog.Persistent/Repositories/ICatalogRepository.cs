@@ -6,10 +6,16 @@ namespace Catalog.Persistence.Repositories
 {
     public interface ICatalogRepository
     {
-        IQueryable<Commodity> GetAllCommodities();
+        IQueryable<Commodity> Products();
 
         IQueryable<CommodityType> GetCategories();
 
-        Commodity GetCommodity(int id);
+        Task<Commodity> GetProductById(int id);
+
+        void DeleteById(int id);
+
+        int AddProduct(Commodity commodity);
+
+        Task<int> SaveChangesAsync();
     }
 }

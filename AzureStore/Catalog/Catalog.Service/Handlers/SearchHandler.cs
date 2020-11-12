@@ -30,7 +30,7 @@ namespace Catalog.Service.Handlers
             var skip = (filter.Page - 1) * filter.PerPage;
             try
             {
-                var query = _repository.GetAllCommodities()
+                var query = _repository.Products()
                     .Include(x => x.Images)
                     .Where(x => filter.CommodityType == null || filter.CommodityType == x.CommodityTypeId)
                     .Where(x => (x.SalePrice >= filter.From && x.SalePrice <= filter.To)

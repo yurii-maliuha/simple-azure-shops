@@ -22,11 +22,11 @@ namespace Catalog.Service.Handlers
             _mapper = mapper;
         }
 
-        public Task<CommodityDetailsModel> Handle(GetCommodityByIdCommand request, CancellationToken cancellationToken)
+        public async Task<CommodityDetailsModel> Handle(GetCommodityByIdCommand request, CancellationToken cancellationToken)
         {
-            var commodity = _repository.GetCommodity(request.Id);
+            var commodity = await _repository.GetProductById(request.Id);
 
-            return Task.FromResult(_mapper.Map<CommodityDetailsModel>(commodity));
+            return _mapper.Map<CommodityDetailsModel>(commodity);
         }
     }
 }

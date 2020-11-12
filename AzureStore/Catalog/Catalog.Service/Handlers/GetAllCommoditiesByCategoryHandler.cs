@@ -27,10 +27,10 @@ namespace Catalog.Service.Handlers
         public async Task<IEnumerable<CommodityDetailsModel>> Handle(GetCommoditiesByCategoryCommand request, CancellationToken cancellationToken)
         {
             return await _repository
-                .GetAllCommodities()
+                .Products()
                 .Where(x => x.CommodityTypeId == request.CategoryId)
                 .Select(x => _mapper.Map<CommodityDetailsModel>(x))
-                .ToListAsync();
+                .ToListAsync(cancellationToken);
         }
     }
 }

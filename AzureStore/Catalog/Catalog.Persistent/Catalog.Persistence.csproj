@@ -19,6 +19,10 @@
     <Compile Remove="Migrations\20201024154310_Initial.Designer.cs" />
     <Compile Remove="Migrations\20201024154553_Initial.cs" />
     <Compile Remove="Migrations\20201024154553_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20201108180832_CascadeDeleteForImages.cs" />
+    <Compile Remove="Migrations\20201108180832_CascadeDeleteForImages.Designer.cs" />
+    <Compile Remove="Migrations\20201108181642_CascadeDeleteForImages.cs" />
+    <Compile Remove="Migrations\20201108181642_CascadeDeleteForImages.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
