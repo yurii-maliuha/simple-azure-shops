@@ -8,6 +8,7 @@ import Home from "./components/Home";
 import HomeIcon from "@material-ui/icons/Home";
 import AppBar from "@material-ui/core/AppBar/AppBar";
 import BasketBadge from "./containers/BasketBadgeConteiner";
+import Checkout from "./containers/CheckoutConteiner";
 import { StyledLink } from "./components/Shared/LinkWrapper";
 
 const AppStyledLink = styled(StyledLink)({
@@ -36,6 +37,9 @@ function App() {
 			<Switch>
 				<Route path="/basket">
 					<Basket />
+				</Route>
+				<Route path="/checkout">
+					<Checkout />
 				</Route>
 				<Route path="/product/:id">
 					<Product></Product>

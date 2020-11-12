@@ -41,7 +41,7 @@ namespace Orders.API
 			services.AddMediatR(typeof(Startup), typeof(CreateOrderHandler));
 			services.AddDbContext<OrderingContext>(c =>
 			{
-				c.UseSqlServer(_configuration.GetConnectionString("ConnectionString"));
+				c.UseSqlServer(_configuration.GetConnectionString("OrderingDb"));
 			});
 
 			services.AddTransient<Ordering.Persistent.Repositories.IOrderRepository, Ordering.Persistent.Repositories.OrderRepository>();

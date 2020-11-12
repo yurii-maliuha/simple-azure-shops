@@ -1,6 +1,5 @@
 import { connect } from "react-redux";
 import { deleteItem, selectItem, unselectItem } from "../actions/catalog";
-import { submitOrderCreation } from "../actions/ordering";
 import {Basket} from "../components/Basket";
 import OrderItem from "../models/OrderItem";
 
@@ -12,7 +11,6 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        submitOrder: (order: any) => dispatch(submitOrderCreation(order)),
         onItemSelect: (item:any) => dispatch(selectItem(item)),
         onItemUnselect: (item:any) => dispatch(unselectItem(item)),
         onItemDelete: (id: number) => dispatch(deleteItem(id))
