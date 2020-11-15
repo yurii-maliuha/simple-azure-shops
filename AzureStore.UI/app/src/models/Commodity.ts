@@ -1,6 +1,7 @@
 export default interface Commodity {
     id: number;
     name: string;
+    type: number;
     description: string;
     images: string[];
     price: number;

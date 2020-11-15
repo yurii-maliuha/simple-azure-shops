@@ -10,10 +10,10 @@ import React from "react";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import { Carousel } from "react-responsive-carousel";
 import Commodity from "../../models/Commodity";
-import PayPal from "../Payments/PayPalForm";
 import { StyledLink } from "../Shared/LinkWrapper";
 import { StyledBreadcrumbs } from "../Shared/BreadcrumbWrapper";
-
+import ProductForm from "../Admin/ProductForm/ProductForm";
+import Category from "../../models/category";
 
 const StyledDescription = styled("div")({
 	height: "80%",
@@ -28,10 +28,12 @@ const StyledActionContainer = styled("div")({
 });
 
 interface Props {
-    commodity: Commodity;
-    match: any;
-    getProduct: (id: number) => void;
-    onItemSelect: (item: any) => void;
+	commodity: Commodity;
+	match: any;
+	categories: Map<number, Category>;
+	getProduct: (id: number) => void;
+	putProduct: (product: Commodity) => void;
+	onItemSelect: (item: any) => void;
 }
 
 export default class ProductDetails extends React.Component<Props> {
@@ -42,68 +44,79 @@ export default class ProductDetails extends React.Component<Props> {
 
 	componentDidUpdate() {
 		console.log(this.props.commodity.name);
+		console.log(this.props.categories);
 	}
 
-    addToCart = () => {
-        this.props.onItemSelect(this.props.commodity);
-        console.log(this.props.commodity);
-    }
+	addToCart = () => {
+		this.props.onItemSelect(this.props.commodity);
+		console.log(this.props.commodity);
+	};
 
-    render() {
-        const { commodity } = this.props;
-        const images = commodity?.images === undefined ? [] : (this.props.commodity.images as Array<any>)
-            .map(it => {
-                return (<div>
-                    <img src={it} />
-                </div>)
-            });
-        const price = commodity.onSale ? (
-            <Typography variant="h5">
-                <s>{commodity.price}</s>
-                <Typography color="error">
-                    {commodity.salePrice} {commodity.currency}
-                </Typography>
-            </Typography>) :
-            <Typography variant="h5">
-                {commodity.price} {commodity.currency}
-            </Typography>;
-
-        return (<Container style={{padding: "40px 20px"}}>
-            <StyledBreadcrumbs aria-label="breadcrumb">
-                <StyledLink color="inherit" to="/">
-                    Home
-                </StyledLink>
-                <span style={{color: "gray"}}>
-                    {commodity.name}
-                </span>
-            </StyledBreadcrumbs>
-            <Container>
-                <Typography variant="h4">
-                    {commodity.name}
-                </Typography>
-                <Grid container spacing={3}>
-                    <Grid item xs={5}>
-                        <Carousel showThumbs>
-                            {images}
-                        </Carousel>
-                    </Grid>
-                    <Grid item xs={6} direction="column" justify="space-between">
-                        <StyledDescription>
-                            <div>
-                                {commodity.description}
-                            </div>
-                            <StyledActionContainer>
-                                {price}
-                                <Button color="primary" variant="contained" onClick={this.addToCart}>
-                                    Add to cart
-                                    <AddShoppingCartIcon
-                                        style={{ marginLeft: '1rem' }} />
-                                </Button>
-                            </StyledActionContainer>
-                        </StyledDescription>
-                    </Grid>
-                </Grid>
-            </Container>
-        </Container>);
-    }
+	render() {
+		const { commodity } = this.props;
+		const images =
+			commodity?.images === undefined
+				? []
+				: (this.props.commodity.images as Array<any>).map((it) => {
+					return (
+						<div>
+							<img src={it} />
+						</div>
+					);
+				});
+		const price = commodity.onSale ? (
+			<Typography variant="h5">
+				<s>{commodity.price}</s>
+				<Typography color="error">
+					{commodity.salePrice} {commodity.currency}
+				</Typography>
+			</Typography>
+		) : (
+				<Typography variant="h5">
+					{commodity.price} {commodity.currency}
+				</Typography>
+			);
+		return (
+			<Container style={{ padding: "40px 20px" }}>
+				<StyledBreadcrumbs aria-label="breadcrumb">
+					<StyledLink color="inherit" to="/">
+						Home
+					</StyledLink>
+					<span style={{ color: "gray" }}>{commodity.name}</span>
+				</StyledBreadcrumbs>
+				<Container>
+					<Typography variant="h4">{commodity.name}</Typography>
+					<Grid container spacing={3}>
+						<Grid item xs={5}>
+							<Carousel showThumbs>{images}</Carousel>
+						</Grid>
+						<Grid item xs={6} direction="column" justify="space-between">
+							<StyledDescription>
+								<div>{commodity.description}</div>
+								<StyledActionContainer>
+									{price}
+									<Button
+										color="primary"
+										variant="contained"
+										onClick={this.addToCart}
+									>
+										Add to cart
+										<AddShoppingCartIcon style={{ marginLeft: "1rem" }} />
+									</Button>
+								</StyledActionContainer>
+							</StyledDescription>
+						</Grid>
+					</Grid>
+				</Container>
+				{this.props.commodity.id ? (
+					<ProductForm
+						categories={this.props.categories}
+						putProduct={this.props.putProduct}
+						product={this.props.commodity}></ProductForm>
+				) : (
+						<div></div>
+					)}
+			</Container>
+		);
+	}
 }
