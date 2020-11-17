@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Ordering.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Ordering.Persistent.Configuration
 {
@@ -16,6 +13,8 @@ namespace Ordering.Persistent.Configuration
 			builder.Property(x => x.UserEmail)
 				.IsRequired();
 			builder.Property(x => x.State)
+				.IsRequired();
+			builder.Property(x => x.Total)
 				.IsRequired();
 		}
 	}

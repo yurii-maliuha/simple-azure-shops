@@ -5,7 +5,8 @@ import { submitOrderCreation } from "../actions/ordering";
 
 const mapStateToProps = (state: any) => {
     return {
-        orderItems: Array.from(state.catalog.selectedItems.values()) as OrderItem[]
+        orderItems: Array.from(state.catalog.selectedItems.values()) as OrderItem[],
+        orderCreated: !!state.orders.createdOrder
     };
 }
 

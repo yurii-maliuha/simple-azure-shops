@@ -14,6 +14,9 @@ namespace Ordering.Persistent.Configuration
 				.IsRequired();
 			builder.Property(x => x.ComodityId)
 				.IsRequired();
+			builder.Property(x => x.Price)
+				.IsRequired();
+			builder.Ignore(x => x.Total);
 		}
 	}
 }
