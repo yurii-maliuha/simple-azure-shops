@@ -43,7 +43,7 @@ class PayPal extends React.Component<Props> {
 				currency={"USD"}
 				onSuccess={(details: any, data: any) => this.onSuccess(details, data)}
 				options={{
-					clientId: "AUUx62s6T_vdujDK8m7mmwXg3WAxdB5_BYaW7XWO7in5BX7Byq_qZ_0mmK6U8qHvlAsnAMN1oNWzBD5G",
+					clientId: "client_id",
 				}}
 			/>
 		);

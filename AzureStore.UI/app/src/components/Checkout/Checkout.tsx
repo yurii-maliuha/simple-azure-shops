@@ -5,7 +5,8 @@ import { StyledLink } from '../Shared/LinkWrapper';
 import TextField from '@material-ui/core/TextField';
 import { Container } from '@material-ui/core';
 import Button from '@material-ui/core/Button/Button';
-import PayPal from '../../containers/PayPalFormConteiner';
+import PayPal from '../../containers/PayPalFormContainer';
+import Utils from '../../services/utilsService';
 
 interface Props {   
     orderItems: OrderItem[],
@@ -15,12 +16,23 @@ interface Props {
 
 export default class Checkout extends React.Component<Props>
 {
+    emailErrorMessage = "Please provide a valid email";
+
     state = {
-        userEmail: ""
+        userEmail: "",
+        emailValid: true,
+        emailInvalidMessage: ""
       };
 
     handleEmailChange = (event: any) => {
-        this.setState({ userEmail: event.target.value });
+        const emailValue = event.target.value;
+        const validEmail = Utils.emailIsValid(emailValue);
+        const errorMessage = validEmail ? "" : this.emailErrorMessage;
+        this.setState({ 
+            userEmail: emailValue,
+            emailValid: validEmail,
+            emailInvalidMessage: errorMessage
+        });
     }
 
     onSubmit = () => {
@@ -45,7 +57,12 @@ export default class Checkout extends React.Component<Props>
           } else {
             mainContent = <div>
                 <div>
-                    <TextField required label="Please enter your email" onChange={this.handleEmailChange}/>
+                    <TextField 
+                        required 
+                        error={!this.state.emailValid}
+                        label="Please enter your email" 
+                        helperText={this.state.emailInvalidMessage}
+                        onChange={this.handleEmailChange}/>
                 </div>
                 <div>
                     <Button variant="contained" color="primary"

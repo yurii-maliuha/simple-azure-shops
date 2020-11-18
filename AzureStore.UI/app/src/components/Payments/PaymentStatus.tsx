@@ -6,7 +6,7 @@ import { PaymentSaveStatus } from "../../models/PaymentSaveStatus";
 
 interface Props {
     paymentSavedStatus: PaymentSaveStatus;
-    bayer: string;
+    buyer: string;
     resetSelectedItems: () => void;
 }
 
@@ -33,7 +33,7 @@ export default class PaymentStatus extends React.Component<Props> {
                     </span>
                 </StyledBreadcrumbs>
                 <div style={{margin: "20px 0"}}>
-                    <h1> Hi dear {this.props.bayer}!</h1>
+                    <h1> Hi dear {this.props.buyer}!</h1>
                     <div>{resultEl}</div>
                 </div>
             </Container>

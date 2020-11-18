@@ -4,7 +4,7 @@ import PaymentStatus from '../components/Payments/PaymentStatus';
 
 const mapStateToProps = (state: any) => {
     return {
-        bayer: state.orders.createdOrder && state.orders.createdOrder.userEmail,
+        buyer: state.orders.createdOrder && state.orders.createdOrder.userEmail,
         paymentSavedStatus: state.orders.paymentSavedStatus
     };
 }
