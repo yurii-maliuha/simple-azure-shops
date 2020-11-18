@@ -12,7 +12,6 @@ import { Carousel } from "react-responsive-carousel";
 import Commodity from "../../models/Commodity";
 import { StyledLink } from "../Shared/LinkWrapper";
 import { StyledBreadcrumbs } from "../Shared/BreadcrumbWrapper";
-import ProductForm from "../Admin/ProductForm/ProductForm";
 import Category from "../../models/category";
 
 const StyledDescription = styled("div")({
@@ -32,7 +31,6 @@ interface Props {
 	match: any;
 	categories: Map<number, Category>;
 	getProduct: (id: number) => void;
-	putProduct: (product: Commodity) => void;
 	onItemSelect: (item: any) => void;
 }
 
@@ -108,14 +106,6 @@ export default class ProductDetails extends React.Component<Props> {
 						</Grid>
 					</Grid>
 				</Container>
-				{this.props.commodity.id ? (
-					<ProductForm
-						categories={this.props.categories}
-						putProduct={this.props.putProduct}
-						product={this.props.commodity}></ProductForm>
-				) : (
-						<div></div>
-					)}
 			</Container>
 		);
 	}

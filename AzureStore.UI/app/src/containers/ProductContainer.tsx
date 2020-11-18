@@ -16,7 +16,6 @@ const mapStateToProps = (state: any, ownProps: any) => {
 const mapDispatchToProps = (dispatch: any) => {
     return {
         getProduct: (id: number) => dispatch(getProduct(id)),
-        putProduct: (product: Commodity) => dispatch(putProduct(product)),
         onItemSelect: (item: Commodity) => dispatch(selectItem(item))
     };
 }
