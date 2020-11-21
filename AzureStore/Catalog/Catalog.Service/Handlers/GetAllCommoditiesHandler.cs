@@ -26,14 +26,14 @@ namespace Catalog.Service.Handlers
 
         public async Task<Page<CommodityDetailsModel>> Handle(GetAllCommoditiesCommand request, CancellationToken cancellationToken)
         {
-            var data = await _repository.GetAllCommodities()
+            var data = await _repository.Products()
                 .Include(x => x.Images)
                 .Skip(request.Page - 1)
                 .Take(request.PerPage)
                 .Select(x => _mapper.Map<CommodityDetailsModel>(x))
                 .ToListAsync(cancellationToken);
 
-            var allItems = _repository.GetAllCommodities().Count();
+            var allItems = _repository.Products().Count();
             var totalPages = allItems % request.PerPage != 0
                 ? allItems / request.PerPage + 1
                 : allItems / request.PerPage;
