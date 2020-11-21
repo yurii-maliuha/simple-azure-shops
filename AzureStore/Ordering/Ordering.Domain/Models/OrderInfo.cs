@@ -8,7 +8,7 @@ namespace Ordering.Domain.Models
 		public Guid Id { get; set; }
 		// TODO replace for UserGuid after auth will be implemented
 		public string UserEmail { get; set; }
-		public double Total { get; set; }
+		public decimal Total { get; set; }
 		public OrderState State { get; set; }
 		public virtual IEnumerable<OrderItem> OrderItems { get; set; }
 	}

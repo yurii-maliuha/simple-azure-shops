@@ -8,9 +8,9 @@
 
 		public int Quantity { get; set; }
 
-		public double Price { get; set; }
+		public decimal Price { get; set; }
 
-		public double Total => Price * Quantity;
+		public decimal Total => Price * Quantity;
 
 	}
 }
