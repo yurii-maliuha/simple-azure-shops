@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using Ordering.Persistent;
 using Orders.Service.Handlers;
 
@@ -41,10 +42,15 @@ namespace Orders.API
 			services.AddMediatR(typeof(Startup), typeof(CreateOrderHandler));
 			services.AddDbContext<OrderingContext>(c =>
 			{
-				c.UseSqlServer(_configuration.GetConnectionString("ConnectionString"));
+				c.UseSqlServer(_configuration.GetConnectionString("OrderingDb"));
 			});
 
 			services.AddTransient<Ordering.Persistent.Repositories.IOrderRepository, Ordering.Persistent.Repositories.OrderRepository>();
+			services.AddSwaggerGen(c =>
+			{
+				c.DescribeAllParametersInCamelCase();
+				c.SwaggerDoc("v1", new OpenApiInfo());
+			});
 		}
 
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -64,6 +70,13 @@ namespace Orders.API
 			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapControllers();
+			});
+
+			app.UseSwagger();
+
+			app.UseSwaggerUI(c =>
+			{
+				c.SwaggerEndpoint("/swagger/v1/swagger.json", "Ordering V1");
 			});
 		}
 	}

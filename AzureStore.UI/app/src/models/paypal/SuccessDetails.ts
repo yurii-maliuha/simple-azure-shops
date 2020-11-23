@@ -29,6 +29,11 @@ export interface PurchaseUnit {
 		email_address: string;
 		merchant_id: string;
 	};
+	payments: {
+		captures:[{
+			id: string
+		}]
+	}
 }
 
 export interface ShippingInfo {

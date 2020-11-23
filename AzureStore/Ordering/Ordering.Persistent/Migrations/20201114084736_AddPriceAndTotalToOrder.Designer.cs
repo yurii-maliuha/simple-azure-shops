@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Ordering.Persistent;
 
 namespace Ordering.Persistent.Migrations
 {
     [DbContext(typeof(OrderingContext))]
-    partial class OrderingContextModelSnapshot : ModelSnapshot
+    [Migration("20201114084736_AddPriceAndTotalToOrder")]
+    partial class AddPriceAndTotalToOrder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,8 +30,8 @@ namespace Ordering.Persistent.Migrations
                     b.Property<int>("State")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Total")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Total")
+                        .HasColumnType("float");
 
                     b.Property<string>("UserEmail")
                         .IsRequired()
@@ -53,8 +55,8 @@ namespace Ordering.Persistent.Migrations
                     b.Property<Guid?>("OrderInfoId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");

@@ -8,6 +8,7 @@ export const GET_CATALOG_ERROR = "GET_CATALOG_ERROR";
 export const SELECT_ITEM = "SELECT_ITEM";
 export const UNSELECT_ITEM = "UNSELECT_ITEM";
 export const DELETE_ITEM = "DELETE_ITEM";
+export const RESET_ITEMS = "RESET_ITEMS";
 
 export const getCatalogItemsRequest = () => {
     return {
@@ -43,6 +44,12 @@ export const onItemDeleted = (id: number) => {
     }
 }
 
+export const onItemsReseted = () => {
+    return {
+        type: RESET_ITEMS
+    }
+}
+
 export const selectItem = (item: Commodity) => {
     return (dispatch: any) => {
         dispatch(onItemSelected(item));
@@ -58,6 +65,12 @@ export const unselectItem = (item: Commodity) => {
 export const deleteItem = (id: number) => {
     return (dispatch: any) => {
         dispatch(onItemDeleted(id));
+    }
+}
+
+export const resetSelectedItems = () => {
+    return (dispatch: any) => {
+        dispatch(onItemsReseted());
     }
 }
 

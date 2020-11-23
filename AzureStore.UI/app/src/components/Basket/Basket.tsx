@@ -20,7 +20,6 @@ import Utils from '../../services/utilsService';
 
 interface Props {
     selectedItems: OrderItem[];
-    submitOrder: (order: any) => void;
     onItemSelect: (item: Commodity) => void;
     onItemUnselect: (item: Commodity) => void;
     onItemDelete: (id: number) => void;
@@ -52,8 +51,7 @@ const StyledTableRow = withStyles((theme: Theme) =>
 export default class Basket extends React.Component<Props> {
     state = {
       orderItems: new Array<OrderItem>(),
-      total: 0,
-      userEmail: ""
+      total: 0
     };
 
     componentDidMount() {
@@ -72,7 +70,7 @@ export default class Basket extends React.Component<Props> {
       }
     }
 
-    handleCellClick = (id: number) => {
+    handleItemDelete = (id: number) => {
       const item = this.state.orderItems.find(o => o.product.id === id);
       if(!item){
         return;
@@ -88,21 +86,6 @@ export default class Basket extends React.Component<Props> {
       } else if (item) {
         this.props.onItemUnselect(item.product);
       }
-    }
-
-    handleEmailChange = (event: any) => {
-        this.setState({ userEmail: event.target.value });
-    }
-
-    handleCreateOrderClick = () => {
-      const order = {
-        userEmail: this.state.userEmail,
-        orderItems: this.state.orderItems.map(o => {
-         return {comodityId: o.product.id, quantity: o.quantity};
-        })
-      };
-
-      this.props.submitOrder(order);
     }
 
     getTotal(): number {
@@ -154,7 +137,7 @@ export default class Basket extends React.Component<Props> {
                           onChange={(e) => this.handleQuantityChange(item.product.id, e)}/>
                       </StyledTableCell>
                       <StyledTableCell align="right">{item.product.price}</StyledTableCell>
-                      <StyledTableCell align="right" onClick={() => this.handleCellClick(item.product.id)}>
+                      <StyledTableCell align="right" onClick={() => this.handleItemDelete(item.product.id)}>
                           <IconButton>
                             <DeleteIcon/>
                           </IconButton>
@@ -169,12 +152,12 @@ export default class Basket extends React.Component<Props> {
             <h3>Total: {this.state.total}</h3>
           </div>
           <div style={{marginTop:"20px", display:"flex", justifyContent: "space-between"}}>
-            <TextField required label="Please enter your email" onChange={this.handleEmailChange}/>
-            <Button variant="contained" color="primary"
-              disabled={!this.state.orderItems.length}
-              onClick={() => this.handleCreateOrderClick()}>
-              Create Order
-            </Button>
+              <Button variant="contained" color="primary"
+                disabled={!this.state.orderItems.length}>
+                  <StyledLink to="/checkout">
+                    Create Order
+                  </StyledLink>
+              </Button>
           </div>
         </Container>
       );

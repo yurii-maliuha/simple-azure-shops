@@ -1,7 +1,9 @@
-import { ORDER_CREATION_SUBMIT_REQUEST, ORDER_CREATION_SUBMIT_SUCCESS } from '../actions/ordering';
+import { ORDER_CREATION_SUBMIT_REQUEST, ORDER_CREATION_SUBMIT_SUCCESS, PAYMENT_SAVED_STATUS } from '../actions/ordering';
+import { PaymentSaveStatus } from '../models/PaymentSaveStatus';
 const initialState = {
     orderPending: false,
-    selectedItems: []
+    createdOrder: null,
+    paymentSavedStatus: PaymentSaveStatus.NotExecuted
 };
 
 export function orders(state: any = initialState, action: any) {
@@ -9,15 +11,20 @@ export function orders(state: any = initialState, action: any) {
         case ORDER_CREATION_SUBMIT_REQUEST: {
             return {
                 ...state,
-                orderPending: true,
-                selectedItems: action.payload
+                orderPending: true
             };
         };
         case ORDER_CREATION_SUBMIT_SUCCESS: {
             return {
                 ...state,
                 orderPending: false,
-                selectedItems: []
+                createdOrder: action.payload
+            };
+        };
+        case PAYMENT_SAVED_STATUS: {
+            return {
+                ...state,
+                paymentSavedStatus: action.payload
             };
         };
         default: {

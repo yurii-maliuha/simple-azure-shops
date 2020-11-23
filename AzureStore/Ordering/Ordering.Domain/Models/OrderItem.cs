@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Ordering.Domain.Models
+﻿namespace Ordering.Domain.Models
 {
 	public class OrderItem
 	{
@@ -11,6 +7,10 @@ namespace Ordering.Domain.Models
 		public int ComodityId { get; set; }
 
 		public int Quantity { get; set; }
+
+		public decimal Price { get; set; }
+
+		public decimal Total => Price * Quantity;
 
 	}
 }

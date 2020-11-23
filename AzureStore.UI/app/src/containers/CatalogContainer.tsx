@@ -9,7 +9,7 @@ const mapStateToProps = (state: any, ownProps: any) => {
 		catalogItems: state.catalog.catalogItems,
 		catalogLoading: state.catalog.catalogLoading,
 		category: state.categories.current,
-	};
+	};  
 };
 
 const mapDispatchToProps = (dispatch: any) => {

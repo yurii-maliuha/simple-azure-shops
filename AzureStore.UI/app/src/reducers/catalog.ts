@@ -1,4 +1,4 @@
-import { GET_CATALOG_REQUEST, GET_CATALOG_SUCCESS, SELECT_ITEM, UNSELECT_ITEM, DELETE_ITEM } from '../actions/catalog';
+import { GET_CATALOG_REQUEST, GET_CATALOG_SUCCESS, SELECT_ITEM, UNSELECT_ITEM, DELETE_ITEM, RESET_ITEMS } from '../actions/catalog';
 import OrderItem from '../models/OrderItem';
 import Action from '../models/Action';
 
@@ -74,6 +74,12 @@ export function catalog(state: any = initialState, action: Action) {
                 ...state,
                 selectedItems: itemsMap
             };
+        }
+        case RESET_ITEMS: {
+            return {
+                ...state,
+                selectedItems: []
+            }
         }
 
         default: {
