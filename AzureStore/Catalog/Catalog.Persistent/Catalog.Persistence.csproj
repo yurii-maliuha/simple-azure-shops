@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20201024153238_Initial.cs" />
+    <Compile Remove="Migrations\20201024153238_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20201024153612_Initial.cs" />
+    <Compile Remove="Migrations\20201024153612_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20201024153734_Initial.cs" />
+    <Compile Remove="Migrations\20201024153734_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20201024154043_Initial.cs" />
+    <Compile Remove="Migrations\20201024154043_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20201024154210_Initial.cs" />
+    <Compile Remove="Migrations\20201024154210_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20201024154310_Initial.cs" />
+    <Compile Remove="Migrations\20201024154310_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20201024154553_Initial.cs" />
+    <Compile Remove="Migrations\20201024154553_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20201108180832_CascadeDeleteForImages.cs" />
+    <Compile Remove="Migrations\20201108180832_CascadeDeleteForImages.Designer.cs" />
+    <Compile Remove="Migrations\20201108181642_CascadeDeleteForImages.cs" />
+    <Compile Remove="Migrations\20201108181642_CascadeDeleteForImages.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Catalog.Core\Catalog.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Bogus" Version="31.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>
