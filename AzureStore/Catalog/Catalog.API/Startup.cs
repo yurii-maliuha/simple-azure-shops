@@ -3,8 +3,10 @@ using Catalog.Persistence;
 using Catalog.Persistence.Repositories;
 using Catalog.Service.Handlers;
 using Catalog.Service.Mappers;
+using HealthChecks.UI.Client;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -56,6 +58,14 @@ namespace Catalog.API
                 c.SwaggerDoc("v1", new OpenApiInfo());
             });
             services.AddLogging();
+
+            services.AddHealthChecksUI()
+                .AddInMemoryStorage();
+
+            services.AddHealthChecks()
+                .AddSqlServer(_configuration.GetConnectionString(_hostingEnvironment.EnvironmentName));
+
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -74,6 +84,11 @@ namespace Catalog.API
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Catalog V1");
             });
+            app.UseHealthChecks("/hc",
+                new HealthCheckOptions
+                {
+                    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+                }).UseHealthChecksUI();
         }
     }
 }
